@@ -1,0 +1,45 @@
+[{
+	"name": "Machine(Date)",
+	"connection": null,
+	"type": null,
+	"active": true,
+	"lastExecution": "2019-10-14T07:18:47.989Z",
+	"data": {
+		"resultFormat": "unchanged",
+		"tags": [],
+		"dims": [],
+		"queryText": "select * from MachineDetails where ${date > ${specialTimeRange:from}} and  ${date < ${specialTimeRange:to}}",
+		"availableColumns": ["id", "model_name", "cpu_usage", "performance", "process", "os", "date"],
+		"sampleQueryResult": {
+			"id": 1,
+			"model_name": "Elite Display e233",
+			"cpu_usage": 26,
+			"performance": 89,
+			"process": "node",
+			"os": "Windows",
+			"date": null
+		}
+	}
+}, {
+	"name": "specialTimeRange (specialTimeRange)",
+	"connection": null,
+	"type": "param",
+	"active": true,
+	"lastExecution": "2019-10-14T07:18:37.061Z",
+	"data": {
+		"tags": [],
+		"dims": [],
+		"paramQueryType": "date",
+		"queryText": "",
+		"selectedColumn": "",
+		"selectedColumnValue": "",
+		"selectedoption": "novalue",
+		"selectedDate": "specificDate",
+		"value": "",
+		"displayName": "specialTimeRange",
+		"variableName": "specialTimeRange",
+		"resultFormat": "unchanged",
+		"labelValueList": [],
+		"availableColumns": []
+	}
+}]

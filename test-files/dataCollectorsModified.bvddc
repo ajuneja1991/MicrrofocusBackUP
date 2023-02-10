@@ -1,0 +1,37 @@
+[{
+  "name": "Top 5 Systems by CPU Utilization",
+  "connection": null,
+  "type": null,
+  "active": true,
+  "lastExecution": null,
+  "data": {
+    "resultFormat": "groupwidget",
+    "tags": [],
+    "dims": [],
+    "queryText": "SELECT 1",
+    "availableColumns": ["ID", "rank", "Host_name", "avg_cpu_utilization"],
+    "sampleQueryResult": {
+      "ID": "c91d585a-c4b8-759c-0824-a4ec018f1747",
+      "rank": 1,
+      "Host_name": "btpvm2041.hpeswlab.net",
+      "avg_cpu_utilization": 1.80650708024275
+    }
+  }
+}, {
+  "name": "Test: CPU Utilization for past 7 days",
+  "connection": null,
+  "type": null,
+  "active": true,
+  "lastExecution": null,
+  "data": {
+    "resultFormat": "unchanged",
+    "tags": [],
+    "dims": [],
+    "queryText": "SELECT 1",
+    "availableColumns": ["timestamp", "cpu"],
+    "sampleQueryResult": {
+      "timestamp": "2018-02-13T08:00:00.000Z",
+      "cpu": 0.5
+    }
+  }
+}]

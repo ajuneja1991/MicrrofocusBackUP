@@ -1,0 +1,151 @@
+[
+	{
+		"name": "DQ_HOSTS",
+		"connection": null,
+		"type": null,
+		"active": true,
+		"lastExecution": "2019-07-29T09:59:01.091Z",
+		"data": {
+			"resultFormat": "unchanged",
+			"tags": [],
+			"dims": [],
+			"queryText": "select * from machines where ${createdOn > (current_date - cast(${days} as INTEGER))} and ${cpu >= ${vn_cpu}} or ${region = ${vn_region}} order by cpu asc",
+			"availableColumns": [
+				"Region",
+				"CPU"
+			],
+			"sampleQueryResult": {
+				"Region": "Australia",
+				"CPU": 50
+			}
+		}
+	},
+	{
+		"name": "dn_cpu (vn_cpu)",
+		"connection": null,
+		"type": "param",
+		"active": true,
+		"lastExecution": "2019-07-29T09:49:07.208Z",
+		"data": {
+			"tags": [],
+			"dims": [],
+			"paramQueryType": "sql",
+			"queryText": "select * from Machines1",
+			"selectedColumn": {
+				"id": "CPU",
+				"label": "CPU",
+				"icon": ""
+			},
+			"selectedColumnValue": {
+				"id": "CPU",
+				"label": "CPU",
+				"icon": ""
+			},
+			"selectedoption": "customvalue",
+			"value": "50",
+			"displayName": "dn_cpu",
+			"variableName": "vn_cpu",
+			"resultFormat": "unchanged",
+			"labelValueList": [],
+			"availableColumns": [
+				"hostname",
+				"CPU",
+				"ram",
+				"id",
+				"category",
+				"hostname",
+				"CPU",
+				"ram",
+				"id",
+				"category"
+			],
+			"sampleQueryResult": {
+				"hostname": "host1",
+				"CPU": 100,
+				"ram": 70,
+				"id": 1,
+				"category": "hostA"
+			}
+		}
+	},
+	{
+		"name": "dn_region (vn_region)",
+		"connection": null,
+		"type": "param",
+		"active": true,
+		"lastExecution": "2019-07-29T09:52:11.541Z",
+		"data": {
+			"tags": [],
+			"dims": [],
+			"paramQueryType": "sql",
+			"queryText": "select * from machines",
+			"selectedColumn": {
+				"id": "Region",
+				"label": "Region",
+				"icon": ""
+			},
+			"selectedColumnValue": {
+				"id": "Region",
+				"label": "Region",
+				"icon": ""
+			},
+			"selectedoption": "novalue",
+			"value": "",
+			"displayName": "dn_region",
+			"variableName": "vn_region",
+			"resultFormat": "unchanged",
+			"labelValueList": [],
+			"availableColumns": [
+				"Region",
+				"CPU"
+			],
+			"sampleQueryResult": {
+				"Region": "Africa",
+				"CPU": 100
+			}
+		}
+	},
+	{
+		"name": "period (days)",
+		"connection": null,
+		"type": "param",
+		"active": true,
+		"lastExecution": "2019-07-18T06:51:58.827Z",
+		"data": {
+			"tags": [],
+			"dims": [],
+			"paramQueryType": "valueList",
+			"queryText": "",
+			"selectedColumn": "",
+			"selectedColumnValue": "",
+			"selectedoption": "novalue",
+			"value": "",
+			"displayName": "period",
+			"variableName": "days",
+			"resultFormat": "unchanged",
+			"labelValueList": [
+				{
+					"label": "1 day",
+					"value": "1"
+				},
+				{
+					"label": "week",
+					"value": "7"
+				},
+				{
+					"label": "month",
+					"value": "30"
+				},
+				{
+					"label": "yearly",
+					"value": "365"
+				}
+			],
+			"availableColumns": [],
+			"sampleQueryResult": {
+				"label": "1 day",
+				"value": "1"
+			}
+		}
+	}
+]

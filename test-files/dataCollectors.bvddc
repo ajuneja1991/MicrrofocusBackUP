@@ -1,0 +1,37 @@
+[{
+  "name": "Top 5 Systems by CPU Utilization",
+  "connection": null,
+  "type": null,
+  "active": true,
+  "lastExecution": null,
+  "data": {
+    "resultFormat": "groupwidget",
+    "tags": [],
+    "dims": [],
+    "queryText": "SELECT MonitoredSystemId AS ID, \n\trow_number() over (ORDER BY AVG(GBL_CPU_TOTAL_UTIL) DESC) AS rank, \n    Host_name, AVG(GBL_CPU_TOTAL_UTIL) AS avg_cpu_utilization \nFROM opsbridge_store.SCOPE_GLOBAL \nWHERE TO_TIMESTAMP(timestamp_utc) >= now() - INTERVAL '14 hours' AND MonitoredSystemId IS NOT null \nGROUP BY Host_name, MonitoredSystemId  \nORDER BY AVG(GBL_CPU_TOTAL_UTIL) DESC \nLIMIT 5",
+    "availableColumns": ["ID", "rank", "Host_name", "avg_cpu_utilization"],
+    "sampleQueryResult": {
+      "ID": "c91d585a-c4b8-759c-0824-a4ec018f1747",
+      "rank": 1,
+      "Host_name": "btpvm2041.hpeswlab.net",
+      "avg_cpu_utilization": 1.80650708024275
+    }
+  }
+}, {
+  "name": "Test: CPU Utilization for past 7 days",
+  "connection": null,
+  "type": null,
+  "active": true,
+  "lastExecution": null,
+  "data": {
+    "resultFormat": "unchanged",
+    "tags": [],
+    "dims": [],
+    "queryText": "SELECT DISTINCT TIME_SLICE(TO_TIMESTAMP(timestamp_utc), 1, 'HOUR', 'END') AS timestamp, \n\tFIRST_VALUE(GBL_CPU_TOTAL_UTIL)\n\tOVER (PARTITION BY TIME_SLICE(TO_TIMESTAMP(timestamp_utc), 1, 'HOUR', 'END') ORDER BY timestamp_utc ASC) AS cpu\nFROM opsbridge_store.SCOPE_GLOBAL\nWHERE TO_TIMESTAMP(timestamp_utc) >= now() - INTERVAL '7 days'",
+    "availableColumns": ["timestamp", "cpu"],
+    "sampleQueryResult": {
+      "timestamp": "2018-02-13T08:00:00.000Z",
+      "cpu": 0.5
+    }
+  }
+}]

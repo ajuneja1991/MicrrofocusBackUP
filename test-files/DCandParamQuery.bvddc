@@ -1,0 +1,71 @@
+[
+  {
+    "name": "bvd_param_query_test_machines",
+    "connection": null,
+    "type": null,
+    "active": true,
+    "lastExecution": "2019-04-13T03:35:12.758Z",
+    "data": {
+      "resultFormat": "unchanged",
+      "tags": [],
+      "dims": [],
+      "queryText": "select * from bvd_param_query_test where ${hostname = ${hosts}}",
+      "availableColumns": [
+        "hostname",
+        "cpu",
+        "ram"
+      ],
+      "sampleQueryResult": {
+        "hostname": "host1",
+        "cpu": 75,
+        "ram": 80
+      }
+    }
+  },
+  {
+    "name": "hostspq (hosts)",
+    "connection": null,
+    "type": "param",
+    "active": true,
+    "lastExecution": "2019-04-12T12:39:27.722Z",
+    "data": {
+      "tags": [],
+      "dims": [],
+      "queryText": "select * from machines",
+      "selectedColumn": {
+        "id": "hostname",
+        "label": "hostname",
+        "icon": ""
+      },
+      "selectedColumnValue": {
+        "id": "hostname",
+        "label": "hostname",
+        "icon": ""
+      },
+      "selectedoption": "customvalue",
+      "value": "host1",
+      "displayName": "hostspq",
+      "variableName": "hosts",
+      "resultFormat": "unchanged",
+      "availableColumns": [
+        "hostname",
+        "cpu",
+        "ram",
+        "mid",
+        "timestamp"
+      ],
+      "sampleQueryResult": {
+        "hostname": "host1",
+        "cpu": 100,
+        "ram": 99,
+        "mid": 1,
+        "timestamp": "04:12:13.107524-08"
+      },
+      "dynamicColumn": [
+        {
+          "hostname": "hostname"
+        }
+      ]
+    }
+  }
+]
