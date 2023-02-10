@@ -1,0 +1,25 @@
+{
+  "name": "Cypress Test UIF Content",
+  "id": "UIFCYPRESSTEST",
+  "version": "1.0",
+  "requires": ["UIFBASE@BUILD_VERSION"],
+  "content": {
+    "appcfg": [
+      "./fixtures/foundation/app/**/*.json"
+    ],
+    "pages": [
+      "./fixtures/foundation/pages/**/*.json"
+    ],
+    "categories": [
+      "./fixtures/foundation/categories/**/*.json"
+    ],
+    "menu": [
+      "./fixtures/foundation/menuEntries/**/*.json"
+    ],
+    "widgets": [
+      "./fixtures/foundation/widgets/**/*.json"
+    ],
+    "roles": [
+    ]
+  }
+}
