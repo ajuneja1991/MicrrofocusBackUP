@@ -1,0 +1,885 @@
+import java.text.SimpleDateFormat
+
+if (env.BRANCH_NAME == null) {
+  // if build is triggered from another build, the branch name is set to null. We're assuming master here, as we're only triggering builds from master
+  env.BRANCH_NAME = 'master'
+}
+
+/* Determine if this build is running on master or a hotfix (release) branch.
+   Import corresponding defaults */
+def MASTER_BRANCH = 'master'
+if (params.BRANCH_NAME != null) {
+  MASTER_BRANCH = params.BRANCH_NAME
+}
+if (env.BRANCH_NAME ==~ /^\d{2}\.\d{2}\/hf$/) {
+  library 'bvd-jenkins-library@'+env.BRANCH_NAME
+  MASTER_BRANCH = env.BRANCH_NAME
+} else {
+  library 'bvd-jenkins-library'
+}
+
+/* Global definitions */
+def SSH_GLOBAL_OPTIONS = "-o ServerAliveInterval=60 -o StrictHostKeyChecking=no -o CheckHostIP=no -i /sshid/ssh-privatekey"
+def currentStage = 'Jenkins'
+def additionalEmailText = ''
+def versionInformation = ''
+def emailSubject = ''
+def emailTo= 'jitesh.singh@microfocus.com,swamilkumar.tyahadi@microfocus.com,sophiab@microfocus.com,awinash.jaiswal@microfocus.com,andreas.weber@microfocus.com,birgitta.hettler@microfocus.com,prathibha.das@microfocus.com,rahul.dethe@microfocus.com'
+def dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
+def start_date = new Date()
+def start_date_string = dateFormat.format(start_date)
+def REPORT_FOLDER = start_date_string
+def Suite_Url = "https://myd-hvm06097.swinfra.net:19443"
+def cypressStartOfTheWeek=""
+
+parameters {
+  activeChoiceParam('REVERT_SYSTEMS') {
+    description('select your choice')
+    choiceType('Single Select')
+    groovyScript {
+      script('return["false","true"]')
+      fallbackScript('return ["error"]')
+    }
+  }
+  activeChoiceReactiveParam('VM_IDS_TO_REVERT') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(REVERT_SYSTEMS.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"118,114,120\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('REVERT_SYSTEMS')
+  }
+  activeChoiceReactiveParam('SNAPSHOT_NAMES_TO_REVERT') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(REVERT_SYSTEMS.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"2020.11.00134,POSTGRES_TLS_CONFIG,ORACLE_TLS_CONFIG_WORKING\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('REVERT_SYSTEMS')
+  }
+  activeChoiceParam('EXTERNAL_POSTGRES') {
+    description('select your choice')
+    choiceType('Single Select')
+    groovyScript {
+      script('return["false","true"]')
+      fallbackScript('return ["error"]')
+    }
+  }
+  activeChoiceReactiveParam('EXTERNAL_PG_SCHEDULE') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_POSTGRES.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"Tuesday,Friday\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_POSTGRES')
+  }
+  activeChoiceReactiveParam('PG_HOSTNAME') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_POSTGRES.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"myd-hvm02782.swinfra.net\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_POSTGRES')
+  }
+  activeChoiceReactiveParam('PG_PORT') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_POSTGRES.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"5432\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_POSTGRES')
+  }
+  activeChoiceReactiveParam('PG_PASSWORD') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_POSTGRES.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"installed\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_POSTGRES')
+  }
+  activeChoiceReactiveParam('POSTGRES_TLS') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_POSTGRES.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<select name=\"value\" ><option value=\"false\">false</option><option value=\"true\">true</option</select>">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_POSTGRES')
+  }
+  activeChoiceReactiveParam('POSTGRES_TLS_CERT') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(POSTGRES_TLS.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('POSTGRES_TLS')
+  }
+  activeChoiceParam('EXTERNAL_ORACLE') {
+    description('select your choice')
+    choiceType('Single Select')
+    groovyScript {
+      script('return["false","true"]')
+      fallbackScript('return ["error"]')
+    }
+  }
+  activeChoiceReactiveParam('ORACLE_SCHEDULE') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_ORACLE.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"Monday,Thursday\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_ORACLE')
+  }
+  activeChoiceReactiveParam('ORACLE_HOST_NAME') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_ORACLE.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"myd-hvm03015.swinfra.net\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_ORACLE')
+  }
+  activeChoiceReactiveParam('ORACLE_DB_PORT') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_ORACLE.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"2484\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_ORACLE')
+  }
+  activeChoiceReactiveParam('ORACLE_DB_PASSWORD') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_ORACLE.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"installed\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_ORACLE')
+  }
+  activeChoiceReactiveParam('ORACLE_DB_SID') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_ORACLE.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"orcl\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_ORACLE')
+  }
+  activeChoiceReactiveParam('ORACLE_CONNECTION_STRING') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_ORACLE.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"Monday,Thursday\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_ORACLE')
+  }
+  activeChoiceReactiveParam('ORACLE_SERVICE_NAME') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_ORACLE.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"Monday,Thursday\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_ORACLE')
+  }
+  activeChoiceReactiveParam('ORACLE_TLS') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_ORACLE.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<select name=\"value\" ><option value=\"false\">false</option><option value=\"true\">true</option</select>" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_ORACLE')
+  }
+  activeChoiceReactiveParam('ORACLE_SERVER_CERT') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(ORACLE_TLS.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('ORACLE_TLS')
+  }
+  activeChoiceReactiveParam('ORACLE_WALLET_TLS') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(ORACLE_TLS.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('ORACLE_TLS')
+  }
+  activeChoiceReactiveParam('ORACLE_WALLET_PASSWORD') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(ORACLE_TLS.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('ORACLE_TLS')
+  }
+  activeChoiceParam('EXTERNAL_VERTICA') {
+    description('select your choice')
+    choiceType('Single Select')
+    groovyScript {
+      script('return["false","true"]')
+      fallbackScript('return ["error"]')
+    }
+  }
+  activeChoiceReactiveParam('VERTICA_HOSTNAME') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_VERTICA.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"myd-hvm02778.swinfra.net\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_VERTICA')
+  }
+  activeChoiceReactiveParam('VERTICA_DB_PORT') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_VERTICA.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"5433\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_VERTICA')
+  }
+  activeChoiceReactiveParam('VERTICA_DB_NAME') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_VERTICA.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"opsadb\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_VERTICA')
+  }
+  activeChoiceReactiveParam('VERTICA_DB_USER') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_VERTICA.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"dbadmin\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_VERTICA')
+  }
+  activeChoiceReactiveParam('VERTICA_DB_PASSWORD') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_VERTICA.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"installed\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_VERTICA')
+  }
+  activeChoiceReactiveParam('VERTICA_TLS') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EXTERNAL_VERTICA.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<select name=\"value\" ><option value=\"false\">false</option><option value=\"true\">true</option</select>" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EXTERNAL_VERTICA')
+  }
+  activeChoiceReactiveParam('VERTICA_TLS_CERT') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(VERTICA_TLS.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('VERTICA_TLS')
+  }
+  activeChoiceParam('OBM_INSTALL') {
+    description('select your choice')
+    choiceType('Single Select')
+    groovyScript {
+      script('return["false","true"]')
+      fallbackScript('return ["error"]')
+    }
+  }
+  activeChoiceReactiveParam('OBM_HOST_NAME') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(OBM_INSTALL.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"myd-hvm06160.swinfra.net\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('OBM_INSTALL')
+  }
+  activeChoiceParam('REVERT_OMI_SYSTEM') {
+    description('select your choice')
+    choiceType('Single Select')
+    groovyScript {
+      script('return["false","true"]')
+      fallbackScript('return ["error"]')
+    }
+  }
+  activeChoiceReactiveParam('OMI_SYSTEM_VMID') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(REVERT_OMI_SYSTEM.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"119\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('REVERT_OMI_SYSTEM')
+  }
+  activeChoiceReactiveParam('OMI_SYSTEM_SNAPSHOTNAME') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(REVERT_OMI_SYSTEM.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"Base_RMI\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('REVERT_OMI_SYSTEM')
+  }
+  activeChoiceParam('EMBEDED_POSTGRES') {
+    description('select your choice')
+    choiceType('Single Select')
+    groovyScript {
+      script('return["false","true"]')
+      fallbackScript('return ["error"]')
+    }
+  }
+  activeChoiceReactiveParam('PG_SCHEDULE') {
+    description('select your choice')
+    choiceType('Formatted HTML')
+    groovyScript {
+      script(' if(EMBEDED_POSTGRES.equals("false")) { "<b>Not Applicable</b><input type=\"hidden\" name=\"value\" value=\"Not Applicable\" />" } else {return "<input name=\"value\" class=\"setting-input\" type=\"text\" value=\"Wednesday,Sunday,Saturday\">" } ')
+      fallbackScript('return ["error"]')
+    }
+    referencedParameter('EMBEDED_POSTGRES')
+  }
+  string(defaultValue: 'master', description: 'Branch Name', name: 'BRANCH_NAME')
+  string(defaultValue: 'Monday', description: 'OMI schedule', name: 'OMI_SCHEDULE')
+  string(defaultValue: '19443', description: 'BVD Port', name: 'BVD_PORT')
+  choice(name: 'INSTALL_SUITE_LICENSES', choices: ['false', 'true'], description: 'Pick something')
+  choice(name: 'COLLECT_COVERAGE', choices: ['false', 'true'], description: 'Pick something')
+  choice(name: 'RUN_CHROME_UI_TESTS', choices: ['false', 'true'], description: 'Pick something')
+  choice(name: 'RERUN_CHROME_UI_TESTS', choices: ['false', 'true'], description: 'Pick something')
+  choice(name: 'RUN_CYPRESS_UI_TESTS', choices: ['false', 'true'], description: 'Pick something')
+  choice(name: 'INSTALL_BVD', choices: ['false', 'true'], description: 'Pick something')
+  string(defaultValue: 'myd-hvm06097.swinfra.net', description: 'BVD Host Name', name: 'BVD_HOST')
+  choice(name: 'SETUP_PROMETHEUS', choices: ['false', 'true'], description: 'Pick something')
+}
+
+try {
+  ansiColor('xterm') {
+    /* defaults */
+    def label = "bvd-test-pod-ci-farm-${UUID.randomUUID().toString()}"
+    def BODA_BASE_DIR = "/boda"
+    def EC_SUITE = "SuiteBVD"
+    def BVD_VERSION = ""
+    def FILE = ""
+    def DEPLOY_SCRIPT = ""
+    def OB_HOME = "/tmp/OB_HOME"
+    def PV_NAME = ""
+    def LICENSE_FILE_PREMIUM = ""
+    def LICENSE_FILE_ULTIMATE = ""
+    def LICENSE_SCRIPT = ""
+    def WEB2PDF_SCRIPT = ""
+    def LICENSE_SCRIPT_PATH = ""
+    def TYPE = "SIT"
+    def PORT = "22"
+    def STESTLOG = "/tmp/HPOpr${TYPE}_${UUID.randomUUID().toString()}.log"
+    def ACCESS_SYSTEM = "myd-hvm02778.swinfra.net"
+    def TEST_RUNNER_USER = "myd-hvm03125+Administrator"
+    def TEST_RUNNER_SYSTEM = "myd-hvm03125.swinfra.net"
+    def parametersMap = [:]
+    params.each { key, value ->
+      parametersMap.put(key, value.toString().replaceAll(",\$", ""))
+    }
+
+    for (element in parametersMap) {
+      echo "${element.key} ${element.value}"
+    }
+    // Change dbtype as per alternate sanity run
+    def testDBType = getTestDBType()
+    def today = getCurrentDay()
+    def BVD_HOSTNAME = parametersMap.BVD_HOST
+    def BVD_PORT = parametersMap.BVD_PORT
+    def POSTGRES_TLS = parametersMap.POSTGRES_TLS
+    def ORACLE_TLS = parametersMap.ORACLE_TLS
+    def VERTICA_TLS = parametersMap.VERTICA_TLS
+
+    // Will wait for 10 hours max
+    timeout(time:10, unit: 'HOURS') {
+      podTemplate( label: label, cloud: 'kubernetes',
+        containers: [ templateNodeBuild(), templateAWS(), templateHelm(), templateDryRun() ],
+        volumes: [
+          hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+          secretVolume(secretName: 'opc-bld-ssh', mountPath: '/sshid', defaultMode: '256'),
+          nfsVolume(mountPath: '/boda', serverAddress: 'fs-06e41936fa598f287.efs.us-west-2.amazonaws.com', serverPath: '/sftp/pub', readOnly: false),
+		      nfsVolume(mountPath: '/boda_data', serverAddress: 'fs-06e41936fa598f287.efs.us-west-2.amazonaws.com', serverPath: '/btl', readOnly: true),
+          nfsVolume(mountPath: '/report', serverAddress: 'fs-0d0247a7e3888419c.efs.us-west-2.amazonaws.com', serverPath: '/', readOnly: false),
+        ]
+      )
+      {
+        node(label) {
+          stage('checkout') {
+            container('node-build') {
+              banner("checkout")
+              checkout scm
+              branch = env.BRANCH_NAME
+
+              sh """
+                curl ${globals.ARTIFACTORY_URL}itom-buildoutput/uis/${globals.BVD_VERSION}/helm-chart.version -o ${WORKSPACE}/helm-chart.version
+                curl ${globals.ARTIFACTORY_URL}itom-buildoutput/uis/${globals.BVD_VERSION}/helm-chart.commit -o ${WORKSPACE}/helm-chart.commit
+              """
+              BVD_CHART_VERSION  = sh(script: "head -n 1 ${WORKSPACE}/helm-chart.version", returnStdout: true).trim()
+              COMMIT_HASH = sh(script: "head -n 1 ${WORKSPACE}/helm-chart.commit", returnStdout: true).trim()
+              sh "git checkout ${COMMIT_HASH}"
+
+              BVD_VERSION = BVD_CHART_VERSION
+
+              BVD_PODS_POLL_FILE = "./build/tests/bvdPodsPoll.sh"
+              USER_ROLE_JSON_FILE = "./build/tests/com.microfocus.cdf__2020.05__Add_Update_User.json"
+              DEPLOY_SCRIPT = "opsbDeploy.sh"
+              DEPLOY_SCRIPT_FULL_PATH = "./build/tests/${DEPLOY_SCRIPT}"
+              LICENSE_FILE_PREMIUM = "./build/tests/NOM-licfile-Premium.xml"
+              LICENSE_FILE_ULTIMATE = "./build/tests/NOM-licfile-Ultimate.xml"
+              LICENSE_SCRIPT = "license_script.sh"
+              LICENSE_SCRIPT_PATH = "./build/tests/${LICENSE_SCRIPT}"
+              WEB2PDF_SCRIPT = "./build/tests/webtopdf/webtopdf_parallelrequests.sh"
+              echo "-->Build ${BVD_VERSION}<--"
+              echo "-->Branch ${branch}<--"
+
+              FINAL_IMG_DIR = "${WORKSPACE}/finalBuild"
+
+              sh  """
+                rm -rf /tmp/conf.env
+                pwd
+                mkdir -p ${FINAL_IMG_DIR}
+              """
+            }
+          }
+
+          stage('revert') {
+            if (REVERT_SYSTEMS == 'true') {
+              container('general-aws') {
+                def REVERT_SCRIPT = "revert_snapshot.sh"
+                def REVERTFILE = "./build/tests/${REVERT_SCRIPT}"
+
+                sh """
+                  chmod 755 ${REVERTFILE}
+                  export VM_IDS_TO_REVERT=${parametersMap.VM_IDS_TO_REVERT}
+                  export SNAPSHOT_NAMES_TO_REVERT=${parametersMap.SNAPSHOT_NAMES_TO_REVERT}
+
+                  if [ $VM_IDS_TO_REVERT != null ] && [ $SNAPSHOT_NAMES_TO_REVERT != null ]; then
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${REVERTFILE} root@${ACCESS_SYSTEM}:/tmp
+                    ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${ACCESS_SYSTEM} "cd /tmp; ./${REVERT_SCRIPT} $VM_IDS_TO_REVERT $SNAPSHOT_NAMES_TO_REVERT"
+                  fi
+                """
+              }
+            }
+          }
+
+          stage('installChart') {
+            if (INSTALL_BVD == 'true') {
+              container('general-aws') {
+                parametersMap.each { element ->
+                  sleep 1
+                  echo "${element.key} = ${element.value}"
+                  sh """
+                    echo "${element.key}=${element.value}" >> /tmp/conf.env
+                    echo "\n" >> /tmp/conf.env
+                  """
+                }
+                if (POSTGRES_TLS == 'true') {
+                  def POSTGRES_TLS_CERT_PATH=parametersMap.POSTGRES_TLS_CERT
+                  sh """
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${ACCESS_SYSTEM}:${POSTGRES_TLS_CERT_PATH} /tmp
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${POSTGRES_TLS_CERT_PATH} root@${BVD_HOSTNAME}:/tmp
+                  """
+                }
+                if (ORACLE_TLS == 'true') {
+                  def ORACLE_SERVER_CERT_PATH=parametersMap.ORACLE_SERVER_CERT
+                  def ORACLE_WALLET_TLS_PATH=parametersMap.ORACLE_WALLET_TLS
+                  sh """
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${ACCESS_SYSTEM}:${ORACLE_SERVER_CERT_PATH} /tmp
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${ACCESS_SYSTEM}:${ORACLE_WALLET_TLS_PATH} /tmp
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${ORACLE_SERVER_CERT_PATH} root@${BVD_HOSTNAME}:/tmp
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${ORACLE_WALLET_TLS_PATH} root@${BVD_HOSTNAME}:/tmp
+                  """
+                }
+                if (VERTICA_TLS == 'true') {
+                  def VERTICA_TLS_CERT_PATH=parametersMap.VERTICA_TLS_CERT
+                  sh """
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${ACCESS_SYSTEM}:${VERTICA_TLS_CERT_PATH} /tmp
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${VERTICA_TLS_CERT_PATH} root@${BVD_HOSTNAME}:/tmp
+                  """
+                }
+                sh """
+                  chmod 755 ${DEPLOY_SCRIPT_FULL_PATH}
+                  chmod 755 ${BVD_PODS_POLL_FILE}
+                  chmod 755 ${USER_ROLE_JSON_FILE}
+                  export OB_HOME=${OB_HOME}
+
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} /tmp/conf.env root@${BVD_HOSTNAME}:/tmp
+                  ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${BVD_HOSTNAME} "mkdir -p ${OB_HOME}"
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${DEPLOY_SCRIPT_FULL_PATH} root@${BVD_HOSTNAME}:${OB_HOME}
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${BVD_PODS_POLL_FILE} root@${BVD_HOSTNAME}:${OB_HOME}
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${USER_ROLE_JSON_FILE} root@${BVD_HOSTNAME}:/tmp
+
+                  ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${BVD_HOSTNAME} "chmod 777 /tmp/conf.env; cd ${OB_HOME}; ./${DEPLOY_SCRIPT} -h ${BVD_HOSTNAME} -v ${BVD_VERSION} -t;"
+                  ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${BVD_HOSTNAME} "cd ${OB_HOME}; ./bvdPodsPoll.sh;"
+
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${BVD_HOSTNAME}:/tmp/bvd_pods_status.out /tmp/
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${BVD_HOSTNAME}:/tmp/result.html /tmp/
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${BVD_HOSTNAME}:/opt/kubernetes/version.txt /tmp/
+                """
+
+                statusMessage = sh(script: "grep 'BVD pods are up and running' /tmp/bvd_pods_status.out", returnStdout:true).trim()
+                if (statusMessage != "BVD pods are up and running") {
+                  additionalEmailText = additionalEmailText + sh(script: "cat /tmp/bvd_pods_status.out",returnStdout:true).trim()
+                  throw new Exception("BVD pods are not up and running")
+                }
+                cypressStartOfTheWeek = getCurrentDay()
+                PV_NAME = sh(script:"ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${BVD_HOSTNAME} \"find /var/vols/itom/ -path '*/bvd/var/bvd'\"", returnStdout:true).trim()
+                sh """
+                  if [ $INSTALL_SUITE_LICENSES == 'true' ]; then
+                    chmod 755 ${LICENSE_FILE_PREMIUM}
+                    chmod 755 ${LICENSE_FILE_ULTIMATE}
+                    chmod 755 ${LICENSE_SCRIPT_PATH}
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${LICENSE_FILE_PREMIUM} root@${BVD_HOSTNAME}:/tmp
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${LICENSE_FILE_ULTIMATE} root@${BVD_HOSTNAME}:/tmp
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${LICENSE_SCRIPT_PATH} root@${BVD_HOSTNAME}:/tmp
+                    ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${BVD_HOSTNAME} "cd /tmp; chmod 777 ${LICENSE_SCRIPT}; ./${LICENSE_SCRIPT} -u admin -p Control@123 -s https://${BVD_HOSTNAME}:${BVD_PORT}"
+                  fi
+                """
+                additionalEmailText = additionalEmailText + "CDF Version: " + sh(script: "cat /tmp/version.txt",returnStdout:true).trim() + " <br />"
+                additionalEmailText = additionalEmailText + sh(script: "cat /tmp/result.html",returnStdout:true).trim()
+              }
+            }
+          }
+
+          stage('prepare') {
+            container('general-aws') {
+              banner('get info from ec')
+              OMI_IMG_BASE = "${BODA_BASE_DIR}/omi1101.i/integration"
+              OMI_VERSION = sh(script: "ls -r1 ${OMI_IMG_BASE}|head -1",returnStdout:true).trim()
+
+              TOC = ""
+              CONTENT = ""
+
+              ReportFolder = "${BVD_VERSION}"
+            }
+          }
+
+          if ("${today}" == "${OMI_SCHEDULE}") {
+            stage('prepare OMI') {
+              container('general-aws') {
+                MAJOR = sh(script: "echo ${OMI_VERSION} | cut -d '.' -f1", returnStdout:true).trim()
+                MINOR = sh(script: "echo ${OMI_VERSION} | cut -d '.' -f2", returnStdout:true).trim()
+                FIX = sh(script: "echo ${OMI_VERSION} | cut -d '.' -f3", returnStdout:true).trim()
+                OPSBRIDGE_VERSION = "${MAJOR}.${MINOR}.${FIX}"
+
+                echo "TimeStamp: ${new Date()}"
+
+                OMI_IMG_DIR = "${OMI_IMG_BASE}/${OMI_VERSION}"
+                if (REVERT_OMI_SYSTEM == 'true') {
+                  def REVERTFILE = "./build/tests/revert_snapshot.sh"
+                  def REVERT_SCRIPT = "revert_snapshot.sh"
+                  sh """
+                    chmod 755 ${REVERTFILE}
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${REVERTFILE} root@${ACCESS_SYSTEM}:/tmp
+                    ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${ACCESS_SYSTEM} "cd /tmp; ./${REVERT_SCRIPT} parametersMap.OMI_SYSTEM_VMID parametersMap.OMI_SYSTEM_SNAPSHOTNAME"
+                  """
+                }
+
+                sh """
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS}  ${OMI_IMG_DIR}/ProductImage-HPOMi*release.tar root@parametersMap.OBM_HOST_NAME:/tmp 2>&1 | tee -a ${STESTLOG}
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS}  "${OMI_IMG_DIR}/opr-testing_${OPSBRIDGE_VERSION}.zip" "root@parametersMap.OBM_HOST_NAME:/tmp/opr-testing.zip"
+                  ssh ${SSH_GLOBAL_OPTIONS}  ${TEST_RUNNER_USER}@${TEST_RUNNER_SYSTEM} 'rm -rf  /cygdrive/c/Users/Administrator/.m2/repository/com/hp/opr/qa'
+                  ssh ${SSH_GLOBAL_OPTIONS}  ${TEST_RUNNER_USER}@${TEST_RUNNER_SYSTEM} 'rm -rf /cygdrive/c/Users/Administrator/.m2/repository/com/mf/opr/qa'
+                  ssh ${SSH_GLOBAL_OPTIONS}  ${TEST_RUNNER_USER}@${TEST_RUNNER_SYSTEM} 'mkdir -p /cygdrive/c/testing/target'
+                  ssh ${SSH_GLOBAL_OPTIONS}  ${TEST_RUNNER_USER}@${TEST_RUNNER_SYSTEM} 'rm -f /cygdrive/c/testing/pom.xml'
+                """
+              }
+            }
+          }
+
+          def generateReports  = { String SUITE ->
+            echo "Generating report for ${SUITE}"
+            sh """
+              rm -rf /tmp/${SUITE}
+              mkdir -p /tmp/${SUITE}
+
+              scp ${SSH_GLOBAL_OPTIONS} -rq ${TEST_RUNNER_USER}@${TEST_RUNNER_SYSTEM}:/cygdrive/c/testing/target/test-report/${SUITE}/ /tmp/${SUITE}
+              chmod -R 777 /tmp/${SUITE}
+              ls "/tmp/${SUITE}/${SUITE}/${SUITE}-short-emailable-report.html"
+
+              FILE="/tmp/${SUITE}/${SUITE}/${SUITE}-short-emailable-report.html"
+              if [ -f \${FILE} ]; then
+                MYCONTENT=`cat \${FILE}`
+                MYCONTENT="\${MYCONTENT}<br><a href='https://orelinci004.itom.aws.swinfra.net/UIS/${SUITE}/${ReportFolder}/${SUITE}/${SUITE}.html'>Complete Test Report</a><br>"
+                echo \${MYCONTENT}
+                mkdir -p /report/dashboard/data/UIS/${SUITE}/${ReportFolder}
+                cp -r /tmp/${SUITE}/${SUITE} /report/dashboard/data/UIS/${SUITE}/${ReportFolder}
+              fi
+
+              if [ -n "\${MYCONTENT}" ]; then
+                EMAILCONTENT="\${MYCONTENT}"
+                export MYCONTENT
+                case "${SUITE}" in *FailedTestReport)
+                  MYCONTENT=\$(perl -e '\$ENV{MYCONTENT} =~ s/<h1>/<h1><a name="\$ENV{SUITE}_re-execution"\\/>/;print qq{\$ENV{MYCONTENT}\n};')
+                  ;;
+                *)
+                  MYCONTENT=\$(perl -e '\$ENV{MYCONTENT} =~ s/<h1>/<h1><a name="\$ENV{SUITE}"\\/>/;print qq{\$ENV{MYCONTENT}\n};')
+                  ;;
+                esac
+              else
+                EMAILCONTENT="No report available"
+                case "${SUITE}" in *FailedTestReport)
+                  MYCONTENT="<h1><a name='${SUITE}_re-execution'/>${SUITE}_re-execution</h1><br>No test results available"
+                  ;;
+                *)
+                  MYCONTENT="<h1><a name='${SUITE}'/>${SUITE}</h1><br>No test results available"
+                  ;;
+                esac
+              fi
+
+              echo \${MYCONTENT} > /tmp/content.html
+            """
+
+            additionalEmailText = additionalEmailText + sh(script: "cat /tmp/content.html",returnStdout:true).trim()
+
+            if ("${TOC}" == "") {
+              if ("${SUITE}" ==~ /FailedTestReport/) {
+                TOC="<p style='text-indent:.5in;line-height: 80%'><a href='#${SUITE}_re-execution'>${SUITE}_re-execution</a></p>"
+              } else {
+                TOC="<p style='text-indent:.5in;line-height: 80%'><a href='#${SUITE}'>${SUITE}</a></p>"
+              }
+            } else {
+              if ("${SUITE}" ==~ /FailedTestReport/) {
+                TOC="${TOC}<p style='text-indent:.5in;line-height: 80%'><a href='#${SUITE}_re-execution'>${SUITE}_re-execution</a></p>"
+              } else {
+                TOC="${TOC}<p style='text-indent:.5in;line-height: 80%'><a href='#${SUITE}'>${SUITE}</a></p>"
+              }
+            }
+          }
+
+          def runTest = { String SCRIPT, String SUITE ->
+            banner("${SCRIPT}")
+            SCRIPT="${SCRIPT}.bat"
+
+            echo "TimeStamp: ${new Date()}"
+            echo "Starting ${SUITE} tests on test system ${TEST_RUNNER_SYSTEM} "
+            try {
+              sh """
+                ssh $SSH_GLOBAL_OPTIONS ${TEST_RUNNER_USER}@$TEST_RUNNER_SYSTEM "cd /cygdrive/c/testing ;  ./${SCRIPT}"
+              """
+            } catch(error) {
+              echo "Catching Error in ${SCRIPT}"
+              additionalEmailText = additionalEmailText + """<hr/>
+                <h3>${SCRIPT}</h3>
+                <pre>${error}</pre>"""
+            }
+            echo "TimeStamp: ${new Date()}"
+            generateReports(SUITE)
+          }
+
+          if ("${today}" == "${OMI_SCHEDULE}") {
+            stage('run OMI test') {
+              container('general-aws') {
+                runTest("StartOBMInstallation","OBMInstallationforBVD")
+              }
+            }
+          }
+
+          if (RUN_CHROME_UI_TESTS == 'true') {
+            stage('run Chrome test') {
+              container('general-aws') {
+                runTest("StartBvdFrtChrome","BvdFrtChrome")
+              }
+            }
+          }
+
+          if (RERUN_CHROME_UI_TESTS == 'true') {
+            stage('rerun Chrome test') {
+              container('general-aws') {
+                runTest("StartBvdFrtChrome_failedtest","BvdFrtChrome")
+              }
+            }
+          }
+
+          if (RUN_CYPRESS_UI_TESTS == 'true') {
+            stage('build:node') {
+              try {
+                container('node-build') {
+                  banner("download node_modules")
+                  sh """
+                    cd dashboard
+                    curl ${globals.ARTIFACTORY_URL}itom-buildoutput/uis/node_modules_dev/${globals.BVD_VERSION}/node_modules_dev-${globals.BVD_VERSION}.zip -o bvd_node_modules_devel-linux.zip
+                    unzip -o bvd_node_modules_devel-linux.zip
+                  """
+                }
+              } catch (error) {
+                currentStage = STAGE_NAME
+                throw error
+              }
+            }
+
+            stage('copy:Plugins') {
+              container('general-aws') {
+                banner('copying custom plugins to nfs location')
+                PV_NAME = sh(script:"ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${BVD_HOSTNAME} \"find /var/vols/itom/ -path '*/bvd/var/bvd'\"", returnStdout:true).trim()
+
+                sh """
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ./dashboard/test/cypress/fixtures/plugins root@${BVD_HOSTNAME}:${PV_NAME}
+                """
+              }
+            }
+
+            stage('test:Cypress') {
+              container('node-build') {
+                currentStage = STAGE_NAME
+                banner('Cypress UI test')
+                cypressStartOfTheWeek = sh(script: "ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${BVD_HOSTNAME} 'kubectl get cm bvd-config -n \$(kubectl get ns | grep bvd- | cut -d \" \" -f 1) -o yaml | grep \"startOfTheWeek\" | cut -b 23-'", returnStdout: true).trim()
+                sh """
+                  echo "Killing any node process if it is already running"
+                  kill -9 `pidof node`||true
+                  rm -rf ${WORKSPACE}/tools/SecretTool/secrets.json
+                  rm -rf ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/*
+                  rm -rf ${WORKSPACE}/dashboard/cypress_test_report/
+                  export https_proxy="${globals.HTTP_PROXY}";
+                  export http_proxy="${globals.HTTP_PROXY}";
+                  export CYPRESS_username="admin";
+                  export CYPRESS_password="Control@123";
+                  export CYPRESS_START_OF_THE_WEEK=${cypressStartOfTheWeek};
+                  export CYPRESS_baseUrl="https://${BVD_HOSTNAME}:${BVD_PORT}/ui";
+                  export CYPRESS_IDM_BASE_URL="https://${BVD_HOSTNAME}:${BVD_PORT}";
+                  export CYPRESS_TestEnvironment="systemtest";
+                  cd ${WORKSPACE}/dashboard; rm -f ./package-lock.json;
+
+                  echo 'Running BVD on UIF cypress tests'
+                  export BVD_SERVICE_URL="https://${BVD_HOSTNAME}:${BVD_PORT}/bvd";
+
+                  cd ${WORKSPACE}/dashboard/test
+                  cypress run --spec "cypress/integration/bvd/foundation/bvdOnUIF/*.spec.js" --browser chrome --headless || true
+                  [ -d "${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots" ] && cp -r ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots ${WORKSPACE}/dashboard/cypress_test_report/
+
+                  cd ${WORKSPACE}/dashboard
+                  chmod +x ./test/utils/uploadFoundationCypressTestData.sh
+                  chmod +x ./test/utils/ufc.sh
+                  mkdir -p ${WORKSPACE}/dashboard/cypress_test_report/
+
+                  mkdir -p ${WORKSPACE}/dashboard/cypress_reporting_test_report/
+                  ./test/utils/uploadFoundationCypressTestData.sh -u admin -p Control@123 -s https://${BVD_HOSTNAME}:${BVD_PORT}/ui -d https://${BVD_HOSTNAME}:${BVD_PORT}
+                  cd ${WORKSPACE}/dashboard/test
+                  echo "start of the week=${cypressStartOfTheWeek}"
+                  cypress run --spec "cypress/integration/bvd/foundation/sanity/*.spec.js" --browser chrome --headless || true
+                  [ -d "${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots" ] && cp -r ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots ${WORKSPACE}/dashboard/cypress_test_report/
+                  cypress run --spec "cypress/integration/bvd/foundation/functional/**/*.spec.js" --browser chrome --headless || true
+                  node ${WORKSPACE}/dashboard/node_modules/mochawesome-merge/bin/mochawesome-merge ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/*.json > ${WORKSPACE}/dashboard/cypress_test_report/mochawesome.json
+                  node ${WORKSPACE}/dashboard/node_modules/.bin/marge ${WORKSPACE}/dashboard/cypress_test_report/mochawesome.json -f bvd_explore_cypress_tests -o ${WORKSPACE}/dashboard/cypress_test_report/
+                  [ -d "${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots" ] && cp -r ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots ${WORKSPACE}/dashboard/cypress_test_report/
+
+                  export CYPRESS_baseUrl="https://${BVD_HOSTNAME}:${BVD_PORT}/bvd";
+                  export CYPRESS_receiverUrl="https://${BVD_HOSTNAME}:${BVD_PORT}/bvd-receiver"
+                  rm -rf ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/*
+                  cypress run --spec "cypress/integration/bvd/reporting/sanity/*.spec.js" --browser chrome --headless || true
+                  [ -d "${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots" ] && cp -r ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots ${WORKSPACE}/dashboard/cypress_reporting_test_report/
+                  cypress run --spec "cypress/integration/bvd/reporting/functional/**/*.spec.js" --browser chrome --headless || true
+                  node ${WORKSPACE}/dashboard/node_modules/mochawesome-merge/bin/mochawesome-merge ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/*.json > ${WORKSPACE}/dashboard/cypress_reporting_test_report/mochawesome.json
+                  node ${WORKSPACE}/dashboard/node_modules/.bin/marge ${WORKSPACE}/dashboard/cypress_reporting_test_report/mochawesome.json -f bvd_reporting_cypress_tests -o ${WORKSPACE}/dashboard/cypress_reporting_test_report/
+                  [ -d "${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots" ] && cp -r ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots ${WORKSPACE}/dashboard/cypress_reporting_test_report/
+
+                  node ${WORKSPACE}/dashboard/test/utils/storeCollectedMetrics.js ${WORKSPACE}/dashboard/test/cachingPerformanceData.json
+                """
+              }
+              container('general-aws') {
+                banner('copy test reports to web server')
+
+                sh """
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${WORKSPACE}/dashboard/cypress_test_report/mochawesome.json root@${BVD_HOSTNAME}:/tmp/
+                  ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${BVD_HOSTNAME} "mkdir -p /tmp/bvd_cypress_reports"
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${WORKSPACE}/dashboard/cypress_reporting_test_report/mochawesome.json root@${BVD_HOSTNAME}:/tmp/bvd_cypress_reports
+
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${WORKSPACE}/build/tests/gbd/getcontents.sh root@${BVD_HOSTNAME}:/tmp/
+                  ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${BVD_HOSTNAME} "mkdir -p /tmp/cypress; cd /tmp; chmod 775 /tmp/getcontents.sh; ./getcontents.sh ${REPORT_FOLDER};"
+
+                  rm -rf /tmp/cypress/content.html
+                  rm -rf /tmp/bvd_cypress_reports/content.html
+                  mkdir -p /tmp/bvd_cypress_reports/
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${BVD_HOSTNAME}:/tmp/cypress/content.html /tmp/
+                  scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${BVD_HOSTNAME}:/tmp/bvd_cypress_reports/content.html /tmp/bvd_cypress_reports/
+
+                  mkdir -p /report/dashboard/data/UIS/${REPORT_FOLDER}/FOUNDATION/cypress/
+                  [ -d "${WORKSPACE}/dashboard/cypress_test_report" ] && cp -r ${WORKSPACE}/dashboard/cypress_test_report/ /report/dashboard/data/UIS/${REPORT_FOLDER}/FOUNDATION/cypress/
+
+                  mkdir -p /report/dashboard/data/UIS/${REPORT_FOLDER}/REPORTING/cypress/
+                  [ -d "${WORKSPACE}/dashboard/cypress_reporting_test_report" ] && cp -r ${WORKSPACE}/dashboard/cypress_reporting_test_report/ /report/dashboard/data/UIS/${REPORT_FOLDER}/REPORTING/cypress/
+                """
+
+                additionalEmailText = additionalEmailText + "<h2>Foundation Cypress tests</h2> \n" + sh(script: "cat /tmp/content.html", returnStdout:true).trim() + "\n\n"
+                additionalEmailText = additionalEmailText + "\n\n<h2>Reporting Cypress tests</h2> \n" + sh(script: "cat /tmp/bvd_cypress_reports/content.html",returnStdout:true).trim()
+              }
+              container('node-build') {
+                sh """
+                  node ${WORKSPACE}/build/createTestReportIndex.js > /report/dashboard/data/UIS/index.html
+                """
+              }
+            }
+
+            stage('WebtoPdf E2E') {
+              container('node-build') {
+                sh """
+                  cd ${WORKSPACE}/build/tests/webtopdf
+                  npm install
+                  node webtopdfTests.js -u admin -p Control@123 -s ${Suite_Url} -l "${Suite_Url}/bvd/#/show/Welcome"
+                  cat /tmp/webtopdfTests.log
+                  if grep -q "ERROR" /tmp/webtopdfTests.log; then
+                    echo ERROR: "Test execution failed"
+                    exit 1
+                  else
+                    echo "Test execution success"
+                  fi
+
+                  chmod 777 webtopdf_parallelrequests.sh
+                  ./webtopdf_parallelrequests.sh -s ${Suite_Url} -u admin -p Control@123
+                """
+              }
+            }
+
+            stage('collect coverage') {
+              if (COLLECT_COVERAGE == 'true') {
+                // collect coverage only if full tests ran, not to loose any coverage
+                container ('general-aws') {
+                  banner('collect coverage data')
+                  sh """
+                    ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${BVD_HOSTNAME} 'kubectl -n \$(kubectl get ns | grep bvd-helm | cut -d " " -f1) scale --replicas=0 deployment/bvd-explore-deployment deployment/bvd-controller-deployment deployment/bvd-www-deployment deployment/bvd-quexserv deployment/bvd-receiver-deployment deployment/webtopdf-deployment;sleep 20;kubectl -n \$(kubectl get ns | grep bvd-helm | cut -d " " -f1) scale --replicas=1 deployment/bvd-explore-deployment deployment/bvd-controller-deployment deployment/bvd-www-deployment deployment/bvd-quexserv deployment/bvd-receiver-deployment deployment/webtopdf-deployment'
+                    mkdir -p "/boda/bvd/integration/${globals.BVD_VERSION}/coverage/${REPORT_FOLDER}/cdf${testDBType}"
+                    rm -rf "/boda/bvd/integration/${globals.BVD_VERSION}/coverage/${REPORT_FOLDER}/cdf${testDBType}/*"
+                    scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${BVD_HOSTNAME}:${PV_NAME}/log/coverage/* "/boda/bvd/integration/${globals.BVD_VERSION}/coverage/${REPORT_FOLDER}/cdf${testDBType}"
+                  """
+                }
+              }
+            }
+          }
+
+          container ('general-aws') {
+            emailSubject = "BVD Foundation and Reporting Automated cypress tests success"
+            notifyResults("SUCCESSFUL", additionalEmailText, currentStage, '', emailTo, emailSubject)
+          }
+        }
+      }
+    }
+  }
+}
+catch (error) {
+  currentBuild.result = "FAILED"
+  emailSubject = "BVD Foundation and Reporting Automated cypress tests with version ${globals.BVD_VERSION}: FAILED"
+  notifyResults("FAILED", additionalEmailText, currentStage, error, emailTo, emailSubject)
+
+  throw error
+}

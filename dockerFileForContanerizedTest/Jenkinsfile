@@ -1,0 +1,65 @@
+@Library('ITOM_Shared_Libs@version-1.2')
+@Library('bvd-jenkins-library@master')
+
+// Project Configuration
+def orgName = 'hpeswitomsandbox'
+def repoName = 'itom-bvd-cypresstest'
+def imageVersion = '2.0'
+
+cicdInPod([
+    cicdWithCustom(
+        [
+            name:'dynamic-pod',
+            image: 'itom-docker-coso-dl.orgartifactory.swinfra.net/dynamic-pod-images/coso-generic-container:centos7-16',
+            resourceRequestCpu: '0.5',
+            resourceLimitCpu: '1',
+            resourceRequestMemory: '1Gi',
+            resourceLimitMemory: '2Gi'
+        ],
+        [
+            hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
+        ]
+    )
+]) {
+    try {
+        properties([
+            disableConcurrentBuilds()
+        ])
+
+        stage('Git Checkout') {
+            cicdGit.clone(orgName: 'opr',
+                          repoName: 'bvd',
+                          branchName: 'master',
+                          credentialsId: 'github-bfbbn-build-pwd')
+
+            cicdGit.runCmd('checkout master')
+        }
+
+        container('dynamic-pod') {
+            stage('Docker Package and Publish') {
+                def artifactoryCredentialsID = 'artifactory-sdsbuild'
+                def imageName = "itom-docker.orgartifactory.swinfra.net/${orgName}/${repoName}:${imageVersion}"
+
+                cicdLog.info("Image Name: ->$imageName<-")
+
+                dir("$WORKSPACE") {
+                    sh "cd build/tests/dockerFileForContanerizedTest && docker build -t ${imageName} -f Dockerfile --no-cache --pull --network=host ."
+                        image = docker.image("${imageName}")
+                        docker.withRegistry('https://itom-docker.orgartifactory.swinfra.net', "${artifactoryCredentialsID}") {
+                        image.push()
+                        }
+                }
+            }
+        }
+    }
+    catch (Exception err) {
+        print err.getMessage()
+        print err
+        print err.getStackTrace()
+        currentBuild.result = 'FAILURE'
+    }
+    finally {
+        emailSubject = "[${repoName}] - [Branch: ${env.BRANCH_NAME} ImageVersion: ${imageVersion}] - Build Status(#$BUILD_NUMBER) - ${currentBuild.result}"
+        cicdMailNotify(sendTo: "swamilkumar.tyahadi@microfocus.com", mailSubject: "${emailSubject}", template: 'proj_storeOnce.jelly')
+    }
+}

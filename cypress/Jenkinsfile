@@ -1,0 +1,292 @@
+import java.text.SimpleDateFormat
+
+if (env.BRANCH_NAME == null) {
+  // if build is triggered from another build, the branch name is set to null. We're assuming master here, as we're only triggering builds from master
+  env.BRANCH_NAME = 'master'
+}
+/* Determine if this build is running on master or a hotfix (release) branch.
+   Import corresponding defaults */
+def MASTER_BRANCH='master'
+if (env.BRANCH_NAME ==~ /^\d{2}\.\d{2}\/hf$/) {
+  library 'bvd-jenkins-library@'+env.BRANCH_NAME
+  MASTER_BRANCH=env.BRANCH_NAME
+} else {
+  library 'bvd-jenkins-library'
+}
+
+/* Global definitions */
+def SSH_GLOBAL_OPTIONS = "-o ServerAliveInterval=60 -o ServerAliveCountMax=5 -o StrictHostKeyChecking=no -o CheckHostIP=no -i /sshid/ssh-privatekey"
+def currentStage = 'Jenkins'
+def additionalEmailText = ''
+def versionInformation = ''
+def emailSubject = ''
+def dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
+def start_date = new Date()
+def start_date_string = dateFormat.format(start_date)
+def REPORT_FOLDER = start_date_string
+def TESTREPORTSRV="orelinci004.itom.aws.swinfra.net"
+def PV_NAME=''
+def TEXEC="10.168.179.64"
+def Suite_Url = "https://omidock.mambo.net:19443"
+def idm_Url = "https://omidock.mambo.net:19443"
+
+
+
+parameters([
+  string(defaultValue: 'Monday', description: 'Configure start of the week', name: 'START_OF_THE_WEEK'),
+  string(defaultValue: '100.64.1.198', description: 'Please provide the IP of AccessVM', name: 'ACCESSVM')
+])
+
+
+try {
+  ansiColor('xterm') {
+    /* defaults */
+    def label="bvd-test-pod-ci-farm-${UUID.randomUUID().toString()}"
+    def EC_SUITE="SuiteBVD"
+    def TYPE="SIT"
+    def TESTSYSTEM = "10.168.179.64"
+    def STESTIMAGE="Base"
+    def STESTLOG="/tmp/HPOpr${TYPE}_${UUID.randomUUID().toString()}.log"
+    def testDBType = getTestDBType()
+    def SSHINTOSYSTEM_FILE = ""
+    def COPYPLUGINS_FILE = ""
+    def SANITY_SYSTEM_HOSTNAME = "omidock.mambo.net"
+    def PORT = "42201"
+    def cypressStartOfTheWeek=""
+    def parametersMap = [:]
+
+    params.each { key, value ->
+      parametersMap.put(key, value.toString().replaceAll(",\$", ""))
+    }
+
+    for (element in parametersMap) {
+      echo "${element.key} ${element.value}"
+    }
+
+    def ACCESSVM = parametersMap.ACCESSVM
+    def START_OF_THE_WEEK = parametersMap.START_OF_THE_WEEK
+
+    // Will wait for 7 hours max
+    timeout(time:420, unit: 'MINUTES') {
+      podTemplate( label: label, cloud: 'kubernetes',
+        containers: [ templateNodeBuild(), templateAWS() ],
+        volumes: [
+          secretVolume(secretName: 'opc-bld-ssh', mountPath: '/sshid', defaultMode: '256'),
+          hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+          nfsVolume(mountPath: '/boda', serverAddress: 'fs-06e41936fa598f287.efs.us-west-2.amazonaws.com', serverPath: '/sftp/pub', readOnly: false),
+          nfsVolume(mountPath: '/boda_data', serverAddress: 'fs-06e41936fa598f287.efs.us-west-2.amazonaws.com', serverPath: '/btl', readOnly: true),
+          nfsVolume(mountPath: '/report', serverAddress: 'fs-0d0247a7e3888419c.efs.us-west-2.amazonaws.com', serverPath: '/', readOnly: false)
+        ]
+      )
+
+      {
+        node(label) {
+          stage('prepare') {
+            container('node-build') {
+              banner("checkout")
+              checkout scm
+
+              sh """
+                curl ${globals.ARTIFACTORY_URL}itom-buildoutput/uis/${globals.BVD_VERSION}/helm-chart.version -o ${WORKSPACE}/helm-chart.version
+                curl ${globals.ARTIFACTORY_URL}itom-buildoutput/uis/${globals.BVD_VERSION}/helm-chart.commit -o ${WORKSPACE}/helm-chart.commit
+              """
+              BVD_CHART_VERSION  = sh(script: "head -n 1 ${WORKSPACE}/helm-chart.version", returnStdout: true).trim()
+              COMMIT_HASH = sh(script: "head -n 1 ${WORKSPACE}/helm-chart.commit", returnStdout: true).trim()
+              sh "git checkout ${COMMIT_HASH}"
+
+              branch         = env.BRANCH_NAME
+              COPYPLUGINS_FILE = "./build/tests/copyPlugIns.sh"
+              SSHINTOSYSTEM_FILE = "./build/tests/testSystemBeforeDoingSCP.sh"
+
+              echo "-->Build ${BVD_CHART_VERSION}<--"
+              echo "-->Branch ${branch}<--"
+
+              FINAL_IMG_DIR = "${WORKSPACE}/finalBuild"
+
+              sh  """
+                pwd
+                mkdir -p ${FINAL_IMG_DIR}
+              """
+            }
+          }
+
+          stage('build:node') {
+            try {
+              container('node-build') {
+                banner("download node_modules")
+                sh """
+                  cd dashboard
+                  curl ${globals.ARTIFACTORY_URL}itom-buildoutput/uis/node_modules_dev/${globals.BVD_VERSION}/node_modules_dev-${globals.BVD_VERSION}.zip -o bvd_node_modules_devel-linux.zip
+                  unzip -o bvd_node_modules_devel-linux.zip
+                """
+              }
+            } catch (error) {
+              currentStage = STAGE_NAME
+              throw error
+            }
+          }
+
+          stage('copy:Plugins') {
+              container('general-aws') {
+                banner("copying custom plugins to nfs location")
+
+                sh """
+                  chmod 755 ${COPYPLUGINS_FILE}
+                  ${COPYPLUGINS_FILE} "${SSH_GLOBAL_OPTIONS}" "${ACCESSVM}" ${PORT} "${SANITY_SYSTEM_HOSTNAME}"
+                """
+              }
+            }
+
+
+          stage('test:Cypress') {
+            container('node-build') {
+              currentStage = STAGE_NAME
+              banner("Cypress UI test")
+              cypressStartOfTheWeek = sh(script: "ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${ACCESSVM} 'kubectl get cm bvd-config -n \$(kubectl get ns | grep bvd- | cut -d \" \" -f 1) -o yaml | grep \"startOfTheWeek\" | cut -b 23-'", returnStdout: true).trim()
+              wwwPodName = sh(script: "ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${ACCESSVM} 'kubectl get pods -n \$(kubectl get ns | grep bvd- | cut -d \" \" -f 1) | grep bvd-www | cut -d \" \" -f1'", returnStdout: true).trim()
+              copyDBConnJsonFile = sh(script:"ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${ACCESSVM} 'kubectl -n bvd-helm cp /tmp/dbconnection.json ${wwwPodName}:/tmp/dbconnection.json'", returnStdout: true).trim()
+              importDBConnections = sh(script: "ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${ACCESSVM} 'kubectl -n bvd-helm exec ${wwwPodName} -c bvd-www -- node /bvd/cli/installDBConnections.js --user admin --pass Control@123 --file /tmp/dbconnection.json'", returnStdout: true).trim()
+              println "${copyDBConnJsonFile}"
+              println "${importDBConnections}"
+              sh """
+              echo -e "\n${ACCESSVM}  omidock.mambo.net" >> /etc/hosts
+              """
+              sh """
+                echo "Killing any node process if it is already running"
+                kill -9 `pidof node`||true
+              """
+
+              sh """
+                echo -e "\n${ACCESSVM}  omidock.mambo.net" >> /etc/hosts
+                rm -rf ${WORKSPACE}/tools/SecretTool/secrets.json
+                rm -rf ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/*
+                rm -rf ${WORKSPACE}/dashboard/cypress_test_report/
+                #export NO_PROXY=omidock.mambo.net
+                cd ${WORKSPACE}/dashboard; rm -f ./package-lock.json;
+
+                export BVD_VERTICA_HOST=10.168.179.57
+                export BVD_VERTICA_PORT=5433
+                export BVD_VERTICA_USER=dbadmin
+                export BVD_VERTICA_PW=installed
+                export BVD_VERTICA_DB=opsadb
+
+                export CYPRESS_username="admin";
+                export CYPRESS_password="Control@123";
+                export CYPRESS_START_OF_THE_WEEK=${cypressStartOfTheWeek};
+                export CYPRESS_baseUrl="https://omidock.mambo.net:19443/ui";
+                export CYPRESS_IDM_BASE_URL="https://omidock.mambo.net:19443";
+                export CYPRESS_TestEnvironment="systemtest";
+
+                echo 'Running BVD on UIF cypress tests'
+                export BVD_SERVICE_URL="https://omidock.mambo.net:19443/bvd";
+
+                cd ${WORKSPACE}
+                chmod 755 ${SSHINTOSYSTEM_FILE}
+                ${SSHINTOSYSTEM_FILE} "${SSH_GLOBAL_OPTIONS}" "${ACCESSVM}" ${PORT} "${SANITY_SYSTEM_HOSTNAME}"
+                ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${ACCESSVM} "cd /tmp; chmod 775 uploadWelcome.sh; ./uploadWelcome.sh;"
+
+                cd ${WORKSPACE}/dashboard/test
+                cypress run --spec "cypress/integration/bvd/foundation/bvdOnUIF/*.spec.js" --browser chrome --headless || true
+                [ -d "${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots" ] && cp -r ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots ${WORKSPACE}/dashboard/cypress_test_report/
+
+                cd ${WORKSPACE}/dashboard
+                chmod +x ./test/utils/uploadFoundationCypressTestData.sh
+                chmod +x ./test/utils/ufc.sh
+                mkdir -p ${WORKSPACE}/dashboard/cypress_test_report/
+
+                mkdir -p ${WORKSPACE}/dashboard/cypress_reporting_test_report/
+                ./test/utils/uploadFoundationCypressTestData.sh -u admin -p Control@123 -s https://omidock.mambo.net:19443/ui -d https://omidock.mambo.net:19443
+                ./test/utils/uploadFoundationCypressTestData.sh -u customer2Admin@microfocus.com -p Control@123 -n Customer2 -s https://omidock.mambo.net:19443/ui -d https://omidock.mambo.net:19443
+                ./test/utils/uploadFoundationCypressTestData.sh -u customer3Admin@microfocus.com -p Control@123 -n Customer3 -s https://omidock.mambo.net:19443/ui -d https://omidock.mambo.net:19443
+                export CLI_PATH=${WORKSPACE}/dashboard/test/cypress/integration/bvd/reporting/cli/
+                cd  /tmp
+                curl -k "${Suite_Url}/bvd/downloads/bvd-cli.zip" -o bvd-cli.zip
+                curl -k "${Suite_Url}/webtopdf/getcli" -o pdf-print.zip
+                unzip -o /tmp/bvd-cli.zip -d \$CLI_PATH
+                unzip -o /tmp/pdf-print.zip -d \$CLI_PATH
+                mv \${CLI_PATH}linux/pdf-print \${CLI_PATH}
+                ls -l \$CLI_PATH
+                cd ${WORKSPACE}/dashboard/test
+                echo "start of the week=${cypressStartOfTheWeek}"
+                cypress run --spec "cypress/integration/bvd/foundation/sanity/*.spec.js" --browser chrome --headless || true
+                [ -d "${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots" ] && cp -r ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots ${WORKSPACE}/dashboard/cypress_test_report/
+                cypress run --spec "cypress/integration/bvd/foundation/functional/**/*.spec.js" --browser chrome --headless || true
+                node ${WORKSPACE}/dashboard/node_modules/mochawesome-merge/bin/mochawesome-merge ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/*.json > ${WORKSPACE}/dashboard/cypress_test_report/mochawesome.json
+                node ${WORKSPACE}/dashboard/node_modules/.bin/marge ${WORKSPACE}/dashboard/cypress_test_report/mochawesome.json -f bvd_explore_cypress_tests -o ${WORKSPACE}/dashboard/cypress_test_report/
+                [ -d "${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots" ] && cp -r ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots ${WORKSPACE}/dashboard/cypress_test_report/
+
+                export CYPRESS_baseUrl="https://omidock.mambo.net:19443/bvd";
+                export CYPRESS_receiverUrl="https://omidock.mambo.net:19443/bvd-receiver"
+                rm -rf ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/*
+                cd ${WORKSPACE}/dashboard/test
+                cypress run --spec "cypress/integration/bvd/reporting/sanity/*.spec.js" --browser chrome --headless || true
+                [ -d "${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots" ] && cp -r ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots ${WORKSPACE}/dashboard/cypress_reporting_test_report/
+                cypress run --spec "cypress/integration/bvd/reporting/functional/**/*.spec.js" --browser chrome --headless || true
+                node ${WORKSPACE}/dashboard/node_modules/mochawesome-merge/bin/mochawesome-merge ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/*.json > ${WORKSPACE}/dashboard/cypress_reporting_test_report/mochawesome.json
+                node ${WORKSPACE}/dashboard/node_modules/.bin/marge ${WORKSPACE}/dashboard/cypress_reporting_test_report/mochawesome.json -f bvd_reporting_cypress_tests -o ${WORKSPACE}/dashboard/cypress_reporting_test_report/
+                [ -d "${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots" ] && cp -r ${WORKSPACE}/dashboard/test/cypress/reports/mochawesome/screenshots ${WORKSPACE}/dashboard/cypress_reporting_test_report/
+                node ${WORKSPACE}/dashboard/test/utils/storeCollectedMetrics.js ${WORKSPACE}/dashboard/test/cachingPerformanceData.json
+
+                rm -rf "\$CLI_PATH"bvd-cli* "\$CLI_PATH"pdf-print*
+
+                touch exit
+                sleep 20
+                rm exit
+
+              """
+            }
+            container('general-aws') {
+              banner("copy test reports to test runner machine and web server")
+
+              sh """
+                chmod 755 ${SSHINTOSYSTEM_FILE}
+                ${SSHINTOSYSTEM_FILE} "${SSH_GLOBAL_OPTIONS}" "${ACCESSVM}" ${PORT} "${SANITY_SYSTEM_HOSTNAME}"
+                scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${WORKSPACE}/dashboard/cypress_test_report/mochawesome.json root@${ACCESSVM}:/tmp/
+                ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${ACCESSVM} "mkdir -p /tmp/bvd_cypress_reports"
+                scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${WORKSPACE}/dashboard/cypress_reporting_test_report/mochawesome.json root@${ACCESSVM}:/tmp/bvd_cypress_reports
+
+                chmod 755 ${SSHINTOSYSTEM_FILE}
+                ${SSHINTOSYSTEM_FILE} "${SSH_GLOBAL_OPTIONS}" "${ACCESSVM}" ${PORT} "${SANITY_SYSTEM_HOSTNAME}"
+                scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} ${WORKSPACE}/build/tests/cypress/getcontents.sh root@${ACCESSVM}:/tmp/
+                ssh -q ${SSH_GLOBAL_OPTIONS} -p ${PORT} root@${ACCESSVM} "mkdir -p /tmp/cypress; cd /tmp; chmod 775 /tmp/getcontents.sh; ./getcontents.sh ${REPORT_FOLDER};"
+
+                rm -rf /tmp/cypress/content.html
+                rm -rf /tmp/bvd_cypress_reports/content.html
+                mkdir -p /tmp/bvd_cypress_reports/
+                chmod 755 ${SSHINTOSYSTEM_FILE}
+                ${SSHINTOSYSTEM_FILE} "${SSH_GLOBAL_OPTIONS}" "${ACCESSVM}" ${PORT} "${SANITY_SYSTEM_HOSTNAME}"
+                scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${ACCESSVM}:/tmp/cypress/content.html /tmp/
+                chmod 755 ${SSHINTOSYSTEM_FILE}
+                ${SSHINTOSYSTEM_FILE} "${SSH_GLOBAL_OPTIONS}" "${ACCESSVM}" ${PORT} "${SANITY_SYSTEM_HOSTNAME}"
+                scp -rp -v -q -P ${PORT} -o PasswordAuthentication=no ${SSH_GLOBAL_OPTIONS} root@${ACCESSVM}:/tmp/bvd_cypress_reports/content.html /tmp/bvd_cypress_reports/
+
+                mkdir -p /report/dashboard/data/UIS/${REPORT_FOLDER}/FOUNDATION/cypress/
+                [ -d "${WORKSPACE}/dashboard/cypress_test_report/" ] && cp -r ${WORKSPACE}/dashboard/cypress_test_report/ /report/dashboard/data/UIS/${REPORT_FOLDER}/FOUNDATION/cypress/
+
+                mkdir -p /report/dashboard/data/UIS/${REPORT_FOLDER}/REPORTING/cypress/
+                [ -d "${WORKSPACE}/dashboard/cypress_reporting_test_report/" ] && cp -r ${WORKSPACE}/dashboard/cypress_reporting_test_report/ /report/dashboard/data/UIS/${REPORT_FOLDER}/REPORTING/cypress/
+                """
+            }
+            container('node-build') {
+              sh """
+                node ${WORKSPACE}/build/createTestReportIndex.js > /report/dashboard/data/UIS/index.html
+              """
+            }
+          }
+
+          container ('general-aws') {
+            emailSubject = "AWS BVD Foundation and Reporting Automated cypress tests success"
+            additionalEmailText = additionalEmailText + "<h2>Foundation Cypress tests</h2> \n" + sh(script: "cat /tmp/content.html",returnStdout:true).trim() + "\n\n"
+            additionalEmailText = additionalEmailText + "\n\n<h2>Reporting Cypress tests</h2> \n" + sh(script: "cat /tmp/bvd_cypress_reports/content.html",returnStdout:true).trim()
+            notifyResults("SUCCESSFUL", additionalEmailText, currentStage, "", 'swpdl.bvd_testresults@microfocus.com,swamilkumar.tyahadi@microfocus.com,birgitta.hettler@microfocus.com,sophiab@microfocus.com,prathibha.das@microfocus.com,rahul.dethe@microfocus.com,aman.juneja@microfocus.com', emailSubject)
+          }
+        }
+      }
+    }
+  }
+} catch (error) {
+    currentBuild.result = "FAILED"
+    emailSubject = "AWS BVD Foundation and Reporting Automated Cypress Tests FAILED"
+    notifyResults("FAILED", additionalEmailText, currentStage, error, 'swpdl.bvd_buildresults@microfocus.com,swamilkumar.tyahadi@microfocus.com,sophiab@microfocus.com,birgitta.hettler@microfocus.com,prathibha.das@microfocus.com,rahul.dethe@microfocus.com,aman.juneja@microfocus.com', emailSubject)
+    throw error
+ }
