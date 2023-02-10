@@ -1,0 +1,127 @@
+{
+    "title" : "documentation-test",
+    "name" : "test-documentation",
+    "defaultDashboard" : false,
+    "showInMenu" : true,
+    "widgets" : [
+        {
+            "opr_channel" : "cpu-status<>dataChanged<>darco",
+            "opr_item_type" : "opr_update_darco",
+            "opr_dashboard_item" : "1",
+            "widgetId" : "shape1000"
+        },
+        {
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_item_type" : "opr_update_color",
+            "opr_dashboard_item" : "1",
+            "widgetId" : "shape87"
+        }, 
+        {
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_item_type" : "opr_update_color",
+            "opr_dashboard_item" : "1",
+            "widgetId" : "shape88"
+        }, 
+        {
+            "opr_dashboard_item" : "1",
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_item_type" : "opr_update_color",
+            "widgetId" : "group90"
+        }, 
+        {
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_text_color" : false,
+            "opr_text_value" : true,
+            "opr_item_type" : "opr_update_text",
+            "opr_dashboard_item" : "1",
+            "widgetId" : "shape91"
+        }, 
+        {
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_text_color" : true,
+            "opr_text_value" : true,
+            "opr_item_type" : "opr_update_text",
+            "opr_dashboard_item" : "1",
+            "widgetId" : "shape92"
+        }, 
+        {
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_text_color" : true,
+            "opr_text_value" : false,
+            "opr_item_type" : "opr_update_text",
+            "opr_dashboard_item" : "1",
+            "widgetId" : "shape93"
+        }, 
+        {
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_switch_default" : "grey",
+            "opr_item_type" : "opr_update_images",
+            "opr_dashboard_item" : "1",
+            "widgetId" : "group96"
+        }, 
+        {
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_item_type" : "opr_update_sparkline",
+            "opr_chart_period" : 10,
+            "opr_mouse_over" : true,
+            "opr_chart_min_value" : 0,
+            "opr_chart_max_value" : 100,
+            "opr_chart_auto_scale" : false,
+            "opr_dashboard_item" : "1",
+            "widgetId" : "group104"
+        }, 
+        {
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_chart_fill" : "1",
+            "opr_item_type" : "opr_update_sparkline",
+            "opr_dashboard_item" : "1",
+            "opr_chart_period" : 10,
+            "opr_mouse_over" : true,
+            "opr_chart_min_value" : 0,
+            "opr_chart_max_value" : 100,
+            "opr_chart_auto_scale" : false,
+            "widgetId" : "group108"
+        }, 
+        {
+            "opr_channel" : "rss<>newItem",
+            "opr_feed_max_items" : 10,
+            "opr_item_type" : "opr_update_feed",
+            "opr_dashboard_item" : "1",
+            "widgetId" : "shape126"
+        }, 
+        {
+            "opr_channel" : "http://www.tagesschau.de/templates/pages/multimedia/livestream_player.jsp",
+            "opr_item_type" : "opr_update_url",
+            "opr_dashboard_item" : "1",
+            "widgetId" : "shape136"
+        }, 
+        {
+            "opr_chart_numbers" : true,
+            "opr_field" : "summaryvalue_1;summaryvalue_2;summaryvalue_3;summaryvalue_4;summaryvalue_5",
+            "opr_channel" : "summary<>dataChanged",
+            "opr_bar_numbers" : "1",
+            "opr_item_type" : "opr_update_bar_chart",
+            "opr_dashboard_item" : "1",
+            "opr_chart_max_value" : 100,
+            "widgetId" : "group156"
+        }, 
+        {
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_chart_numbers" : true,
+            "opr_item_type" : "opr_update_donut_gauge",
+            "opr_dashboard_item" : "1",
+            "opr_chart_max_value" : 100,
+            "widgetId" : "group166"
+        }, 
+        {
+            "opr_dashboard_item" : "1",
+            "opr_visibility_rule" : "visibility==true",
+            "opr_channel" : "cpu-status<>dataChanged",
+            "opr_item_type" : "opr_update_visibility",
+            "widgetId" : "group181"
+        }
+    ],
+    "dataChannel" : "",
+    "svgFile" : { "data": "", "contentType": "" },
+    "__v" : 1
+}

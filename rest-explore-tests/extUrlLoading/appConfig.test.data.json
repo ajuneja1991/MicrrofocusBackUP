@@ -1,0 +1,219 @@
+{
+  "appConfigWithoutRemoteAccessPatterns": {
+    "app": {
+      "id": "MyApp",
+      "options": {
+        "showContext": true,
+        "showTimeFrame": true
+      },
+      "l10n": {
+        "baseUrl": "{EXPLORE_CONTEXT_ROOT}/externalcomponents/externalL10n/",
+        "prefix": "externalL10n_",
+        "suffix": ".json"
+      },
+      "helpUrl": "https://software.microfocus.com/en-us/products/operations-bridge-suite/overview",
+      "title": "AppConfig Without Accepted Pattern",
+      "titleL10n": "application.title",
+      "excludeTags": [
+        "dev", "test"
+      ]
+    },
+    "context": [],
+    "timeIntervals": {
+      "fiveMinutes": "4s",
+      "fifteenMinutes": "10s"
+    }
+  },
+  "appConfigWithEmptyAcceptedPattern": {
+    "app": {
+      "id": "MyApp",
+      "options": {
+        "showContext": true,
+        "showTimeFrame": true
+      },
+      "l10n": {
+        "baseUrl": "{EXPLORE_CONTEXT_ROOT}/externalcomponents/externalL10n/",
+        "prefix": "externalL10n_",
+        "suffix": ".json"
+      },
+      "helpUrl": "https://software.microfocus.com/en-us/products/operations-bridge-suite/overview",
+      "title": "AppConfig With Accepted Pattern",
+      "titleL10n": "application.title",
+      "excludeTags": ["dev", "test"],
+      "acceptedPatterns": []
+    },
+    "context": [],
+    "timeIntervals": {
+      "fiveMinutes": "4s",
+      "fifteenMinutes": "10s"
+    }
+  },
+  "appConfigWithEmptyRemoteAccessPatterns": {
+    "app": {
+      "id": "MyApp",
+      "options": {
+        "showContext": true,
+        "showTimeFrame": true
+      },
+      "l10n": {
+        "baseUrl": "{EXPLORE_CONTEXT_ROOT}/externalcomponents/externalL10n/",
+        "prefix": "externalL10n_",
+        "suffix": ".json"
+      },
+      "helpUrl": "https://software.microfocus.com/en-us/products/operations-bridge-suite/overview",
+      "title": "AppConfig With Accepted Pattern",
+      "titleL10n": "application.title",
+      "excludeTags": ["dev", "test"],
+      "remoteAccessPatterns": []
+    },
+    "context": [],
+    "timeIntervals": {
+      "fiveMinutes": "4s",
+      "fifteenMinutes": "10s"
+    }
+  },
+  "appConfigWithAcceptedPattern": {
+    "app": {
+      "id": "MyApp",
+      "options": {
+        "showContext": true,
+        "showTimeFrame": true
+      },
+      "l10n": {
+        "baseUrl": "{EXPLORE_CONTEXT_ROOT}/externalcomponents/externalL10n/",
+        "prefix": "externalL10n_",
+        "suffix": ".json"
+      },
+      "helpUrl": "https://software.microfocus.com/en-us/products/operations-bridge-suite/overview",
+      "title": "AppConfig With Accepted Pattern",
+      "titleL10n": "application.title",
+      "excludeTags": ["dev", "test"],
+      "acceptedPatterns": ["*"]
+    },
+    "context": [],
+    "timeIntervals": {
+      "fiveMinutes": "4s",
+      "fifteenMinutes": "10s"
+    }
+  },
+  "appConfigWithRemoteAccessPatterns": {
+    "app": {
+      "id": "MyApp",
+      "options": {
+        "showContext": true,
+        "showTimeFrame": true
+      },
+      "l10n": {
+        "baseUrl": "{EXPLORE_CONTEXT_ROOT}/externalcomponents/externalL10n/",
+        "prefix": "externalL10n_",
+        "suffix": ".json"
+      },
+      "helpUrl": "https://software.microfocus.com/en-us/products/operations-bridge-suite/overview",
+      "title": "AppConfig With Accepted Pattern",
+      "titleL10n": "application.title",
+      "excludeTags": ["dev", "test"],
+      "remoteAccessPatterns": ["*"]
+    },
+    "context": [],
+    "timeIntervals": {
+      "fiveMinutes": "4s",
+      "fifteenMinutes": "10s"
+    }
+  },
+  "appConfigWithAcceptedPatternNotPassing": {
+    "app": {
+      "id": "MyApp",
+      "options": {
+        "showContext": true,
+        "showTimeFrame": true
+      },
+      "l10n": {
+        "baseUrl": "{EXPLORE_CONTEXT_ROOT}/externalcomponents/externalL10n/",
+        "prefix": "externalL10n_",
+        "suffix": ".json"
+      },
+      "helpUrl": "https://software.microfocus.com/en-us/products/operations-bridge-suite/overview",
+      "title": "AppConfig With Accepted Pattern Not Passing",
+      "titleL10n": "application.title",
+      "excludeTags": ["dev", "test"],
+      "acceptedPatterns": ["http://onlyMyHosts.com*"]
+    },
+    "context": [],
+    "timeIntervals": {
+      "fiveMinutes": "4s",
+      "fifteenMinutes": "10s"
+    }
+  },
+  "appConfigWithRemoteAccessPatternsNotPassing": {
+    "app": {
+      "id": "MyApp",
+      "options": {
+        "showContext": true,
+        "showTimeFrame": true
+      },
+      "l10n": {
+        "baseUrl": "{EXPLORE_CONTEXT_ROOT}/externalcomponents/externalL10n/",
+        "prefix": "externalL10n_",
+        "suffix": ".json"
+      },
+      "helpUrl": "https://software.microfocus.com/en-us/products/operations-bridge-suite/overview",
+      "title": "AppConfig With Accepted Pattern Not Passing",
+      "titleL10n": "application.title",
+      "excludeTags": ["dev", "test"],
+      "remoteAccessPatterns": ["http://onlyMyHosts.com*"]
+    },
+    "context": [],
+    "timeIntervals": {
+      "fiveMinutes": "4s",
+      "fifteenMinutes": "10s"
+    }
+  },
+  "appConfigWithMultipleAcceptedPatterns": {
+    "app": {
+      "id": "MyApp",
+      "options": {
+        "showContext": true,
+        "showTimeFrame": true
+      },
+      "l10n": {
+        "baseUrl": "{EXPLORE_CONTEXT_ROOT}/externalcomponents/externalL10n/",
+        "prefix": "externalL10n_",
+        "suffix": ".json"
+      },
+      "helpUrl": "https://software.microfocus.com/en-us/products/operations-bridge-suite/overview",
+      "title": "AppConfig With Multiple Accepted Pattern",
+      "titleL10n": "application.title",
+      "excludeTags": ["dev", "test"],
+      "acceptedPatterns": ["http://onlyMyHosts.com*", "http://localhost*", "https*"]
+    },
+    "context": [],
+    "timeIntervals": {
+      "fiveMinutes": "4s",
+      "fifteenMinutes": "10s"
+    }
+  },
+  "appConfigWithMultipleRemoteAccessPatterns": {
+    "app": {
+      "id": "MyApp",
+      "options": {
+        "showContext": true,
+        "showTimeFrame": true
+      },
+      "l10n": {
+        "baseUrl": "{EXPLORE_CONTEXT_ROOT}/externalcomponents/externalL10n/",
+        "prefix": "externalL10n_",
+        "suffix": ".json"
+      },
+      "helpUrl": "https://software.microfocus.com/en-us/products/operations-bridge-suite/overview",
+      "title": "AppConfig With Multiple Accepted Pattern",
+      "titleL10n": "application.title",
+      "excludeTags": ["dev", "test"],
+      "remoteAccessPatterns": ["http://onlyMyHosts.com*", "http://localhost*", "https*"]
+    },
+    "context": [],
+    "timeIntervals": {
+      "fiveMinutes": "4s",
+      "fifteenMinutes": "10s"
+    }
+  }
+}

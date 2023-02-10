@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="11.2307in" height="7.48365in" viewBox="0 0 808.607 538.823" xml:space="preserve" color-interpolation-filters="sRGB" class="st48" preserveAspectRatio="xMidYMin">
+	
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st2 {fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st3 {fill:#000000;font-family:HP Simplified;font-size:0.833336em}
+		.st4 {fill:#5b9bd5;font-family:HP Simplified;font-size:1.00001em}
+		.st5 {fill:#0096d6;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st6 {fill:none;stroke:none;stroke-width:0.25}
+		.st7 {fill:#5b9bd5;font-family:HP Simplified;font-size:1.16666em}
+		.st8 {fill:#000000;font-size:0.714294em}
+		.st9 {font-size:1em}
+		.st10 {fill:#003232;font-size:0.714294em}
+		.st11 {fill:#5b9bd5;stroke:none;stroke-width:0.25}
+		.st12 {fill:#ff0000;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st13 {fill:#ffffff}
+		.st14 {stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st15 {fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st16 {fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75;visibility:hidden}
+		.st17 {fill:#ff0000}
+		.st18 {stroke:none;stroke-linecap:butt;stroke-width:0.720849}
+		.st19 {fill:#0000ff;stroke:none;stroke-linecap:butt;stroke-width:0.783148}
+		.st20 {fill:#008000;stroke:none;stroke-linecap:butt;stroke-width:0.783148}
+		.st21 {fill:#000000;font-family:HP Simplified;font-size:1.00001em}
+		.st22 {fill:#ef9301;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st23 {fill:#c80e04;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st24 {fill:#49b250;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st25 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st26 {fill:#ccc2d9;stroke:#54426a;stroke-width:2}
+		.st27 {fill:none;stroke:#002060;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st28 {fill:#fff2cc;stroke:#c05046;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st29 {stroke:#ea700d;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}
+		.st30 {fill:#000000;font-family:Calibri;font-size:0.666664em}
+		.st31 {fill:#d7e3bf;stroke:#50632a;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st32 {fill:none;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st33 {fill:#000000;font-family:Arial;font-size:0.833336em}
+		.st34 {fill:#ea700d;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st35 {fill:#789440;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st36 {fill:#923931;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st37 {fill:#31859b;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st38 {fill:#ffc000;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st39 {fill:#9dbb61;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st40 {fill:#c05046;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st41 {fill:#4bacc6;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st42 {stroke:#cccccc;stroke-linecap:butt;stroke-width:0.75}
+		.st43 {fill:#ffffff;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st44 {fill:#5a5a5a;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st45 {fill:#ffff00;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st46 {stroke:#31859b;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}
+		.st47 {fill:#000000;font-family:Calibri;font-size:0.833336em}
+		.st48 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<g   >
+		
+		
+		
+		
+		<a class="ddown" xlink:href="#/show/documentation1">
+			<g id="shape2"   transform="translate(736.566,-3.58609)">
+				
+				
+				
+				
+				
+				<path d="M0 538.82 L55.4 538.82 L70.24 528.36 L55.4 517.89 L0 517.89 L0 538.82 Z" class="st2"/>
+				<text x="14.11" y="531.36" class="st3"  opr_horiz_align="1">Next Page      </text>			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation">
+			<g id="group65" transform="translate(252.757,-504.739)"  >
+				
+				<g id="shape23"  >
+					
+					
+					
+					
+					<rect x="0" y="507.515" width="303.586" height="31.308" class="st2"/>
+					<text x="54.23" y="526.77" class="st4"  opr_horiz_align="2">Business Value Dashboard Stencil Documentation</text>				</g>
+				<g id="group24" transform="translate(4.63822,-4.47994)"  >
+					
+					<g id="shape25"  >
+						
+						<path d="M11.04 538.82 C10.94 538.82 10.82 538.82 10.72 538.82 L12.97 532.61 L16.08 532.61 C16.63 532.61
+									 17.22 532.19 17.41 531.68 L19.86 524.96 C20.26 523.86 19.63 522.95 18.46 522.95 L14.15 522.95
+									 L10.53 532.89 L8.48 538.52 C3.62 537.37 0 532.99 0 527.78 C0 522.71 3.41 518.44 8.06 517.14
+									 L5.95 522.95 L2.43 532.61 L4.77 532.61 L7.76 524.41 L9.52 524.41 L6.53 532.61 L8.87 532.61 L11.66
+									 524.96 C12.06 523.86 11.43 522.95 10.26 522.95 L8.29 522.95 L10.55 516.75 C10.71 516.74 10.88
+									 516.73 11.04 516.73 C17.15 516.73 22.09 521.68 22.09 527.78 C22.09 533.88 17.15 538.82 11.04
+									 538.82 ZM17.73 524.4 L15.97 524.4 L13.51 531.16 L15.27 531.16 L17.73 524.4 Z" class="st5"/>
+					</g>
+				</g>
+			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation1">
+			<g id="shape66"   transform="translate(0.613415,-405.617)">
+				
+				
+				
+				
+				<rect x="0" y="453.783" width="158.654" height="85.0394" class="st6"/>
+				<text x="4" y="470.38" class="st7" >Color Changing Shapes<tspan x="4" dy="1.32em" class="st8">There is a shape which provides </tspan><tspan x="4" dy="1.2em" class="st8">color changing abilites to third party  </tspan><tspan x="4" dy="1.2em" class="st8">shapes</tspan><tspan class="st8">.</tspan></text>			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation2">
+			<g id="shape71"   transform="translate(0.371138,-290.354)">
+				
+				
+				
+				
+				<rect x="0" y="453.783" width="158.654" height="85.0394" class="st6"/>
+				<text x="4" y="470.38" class="st7" >Value Displaying Shapes<tspan x="4" dy="1.32em" class="st8">There are shapes which display a </tspan><tspan x="4" dy="1.2em" class="st8">value or use the a value to hide</tspan><tspan class="st8">/</tspan><tspan x="4" dy="1.2em" class="st8">show other shapes</tspan><tspan class="st8">. </tspan> </text>			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation3">
+			<g id="shape74"   transform="translate(0.25,-172.48)">
+				
+				
+				
+				
+				<rect x="0" y="453.783" width="158.654" height="85.0394" class="st6"/>
+				<text x="4" y="470.38" class="st7" >Status Images<tspan x="4" dy="1.32em" class="st8">Status images show different </tspan><tspan x="4" dy="1.2em" class="st8">images depending on the status of </tspan><tspan x="4" dy="1.2em" class="st8">an value</tspan><tspan class="st8">.</tspan></text>			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation4">
+			<g id="shape76"   transform="translate(0.492277,-31.1594)">
+				
+				
+				
+				
+				<rect x="0" y="433.41" width="158.654" height="105.413" class="st6"/>
+				<text x="4" y="450.01" class="st7" >Sparkline, Area, Bar and <tspan x="4" dy="1.2em" class="st9">Donut Charts</tspan><tspan x="4" dy="1.32em" class="st8">Sparklines and area charts allow the </tspan><tspan x="4" dy="1.2em" class="st8">visualization of data over time and </tspan><tspan x="4" dy="1.2em" class="st8">the donut and bar charts visualizes </tspan><tspan x="4" dy="1.2em" class="st8">the relationship between several </tspan><tspan x="4" dy="1.2em" class="st8">values</tspan><tspan class="st8">. </tspan> </text>			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation3">
+			<g id="shape78"   transform="translate(584.919,-405.617)">
+				
+				
+				
+				
+				<rect x="0" y="453.783" width="190.781" height="85.0394" class="st6"/>
+				<text x="4" y="470.38" class="st7" >Feed<tspan x="4" dy="1.32em" class="st10">Shows a RSS like feed in your dashboard</tspan><tspan class="st10">.</tspan></text>			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation1">
+			<g id="shape87"   transform="translate(181.071,-422.171)" opr_dashboard_item="1" opr_item_type="opr_update_color" opr_channel="cpu-status&#60;&#62;dataChanged">
+				
+				
+				
+				<path d="M0 507.87 A30.9541 30.9541 0 0 1 61.91 507.87 A30.9541 30.9541 0 1 1 0 507.87 Z" class="st11"/>
+			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation1">
+			<g id="shape88"   transform="translate(269.939,-422.171)" opr_dashboard_item="1" opr_item_type="opr_update_color" opr_channel="cpu-status&#60;&#62;dataChanged">
+				
+				
+				<rect x="0" y="476.914" width="61.9083" height="61.9083" class="st11"/>
+			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation1">
+			<g id="group90" transform="translate(358.807,-422.171)"   opr_item_type="opr_update_color" opr_channel="cpu-status&#60;&#62;dataChanged" opr_dashboard_item="1">
+				
+				<g id="group7"   >
+					
+					
+					<g id="shape8"   >
+						
+						<path d="M18.13 538.82 L43.78 538.82 L61.91 520.69 L61.91 495.05 L43.78 476.91 L18.13 476.91 L0 495.05 L0
+									 520.69 L18.13 538.82 Z" class="st12"/>
+					</g>
+					<g id="shape9"    transform="translate(3.79188,-20.894)">
+						
+						<path d="M36.22 532.79 A2.01202 2.01202 0 0 1 32.19 532.79 L32.19 524.73 A2.01202 2.01202 0 0 1 36.22 524.74
+									 L36.22 532.79 ZM40.24 534.8 L40.24 522.73 A4.02404 4.02404 -180 0 0 36.22 518.7 L36.22 518.7
+									 L32.19 518.7 L32.19 518.7 A4.02404 4.02404 -180 0 0 28.17 522.73 L28.17 534.8 A4.02403 4.02403
+									 -180 0 0 32.19 538.82 L32.19 538.82 L32.19 538.82 L36.22 538.82 L36.22 538.82 A4.02404 4.02404
+									 -180 0 0 40.24 534.8 ZM22.13 538.82 L22.13 522.73 L26.16 522.73 L26.16 518.7 L14.08 518.7 L14.08
+									 522.73 L18.11 522.73 L18.11 538.82 L22.13 538.82 ZM6.04 526.75 A2.01202 2.01202 0 0 1 6.04 522.73
+									 L12.07 522.73 L12.07 518.7 L4.02 518.7 A4.02404 4.02404 -180 0 0 -0 522.73 L0 526.75 A4.02404
+									 4.02404 -180 0 0 4.02 530.77 L4.02 530.77 L6.04 530.77 A2.01202 2.01202 0 0 1 6.04 534.8 L6.04
+									 534.8 L0 534.8 L0 538.82 L8.05 538.82 L8.05 538.82 A4.02403 4.02403 -180 0 0 12.07 534.8 L12.07
+									 530.77 A4.02404 4.02404 -180 0 0 8.05 526.75 L8.05 526.75 L6.04 526.75 L6.04 526.75 ZM46.28
+									 524.74 L46.28 526.75 L48.29 526.75 A2.0113 2.0113 -180 0 0 50.3 524.74 A2.01202 2.01202 -180
+									 0 0 48.29 522.73 A2.01202 2.01202 -180 0 0 46.28 524.74 ZM50.3 530.77 L50.3 530.77 A4.02404
+									 4.02404 -180 0 0 54.32 526.75 L54.32 526.75 L54.32 522.73 A4.02404 4.02404 -180 0 0 50.3 518.7
+									 L50.3 518.7 L46.28 518.7 L46.28 518.7 A4.02404 4.02404 -180 0 0 42.25 522.73 L42.25 538.82 L46.28
+									 538.82 L46.28 530.77 L50.3 530.77 L50.3 530.77 Z" class="st13"/>
+						<path d="M36.22 532.79 A2.01202 2.01202 0 0 1 32.19 532.79 L32.19 524.73 A2.01202 2.01202 0 0 1 36.22 524.74
+									 L36.22 532.79" class="st14"/>
+						<path d="M40.24 534.8 L40.24 522.73 A4.02404 4.02404 -180 0 0 36.22 518.7 L36.22 518.7 L32.19 518.7 L32.19
+									 518.7 A4.02404 4.02404 -180 0 0 28.17 522.73 L28.17 534.8 A4.02403 4.02403 -180 0 0 32.19 538.82
+									 L32.19 538.82 L32.19 538.82 L36.22 538.82 L36.22 538.82 A4.02404 4.02404 -180 0 0 40.24 534.8" class="st14"/>
+						<path d="M22.13 538.82 L22.13 522.73 L26.16 522.73 L26.16 518.7 L14.08 518.7 L14.08 522.73 L18.11 522.73
+									 L18.11 538.82 L22.13 538.82" class="st14"/>
+						<path d="M8.05 538.82 L8.05 538.82" class="st14"/>
+						<path d="M4.02 518.7 L4.02 518.7" class="st14"/>
+						<path d="M6.04 526.75 A2.01202 2.01202 0 0 1 6.04 522.73 L12.07 522.73 L12.07 518.7 L4.02 518.7 A4.02404
+									 4.02404 -180 0 0 -0 522.73 L0 526.75 A4.02404 4.02404 -180 0 0 4.02 530.77 L4.02 530.77 L6.04
+									 530.77 A2.01202 2.01202 0 0 1 6.04 534.8 L6.04 534.8 L0 534.8 L0 538.82 L8.05 538.82 L8.05 538.82
+									 A4.02403 4.02403 -180 0 0 12.07 534.8 L12.07 530.77 A4.02404 4.02404 -180 0 0 8.05 526.75 L8.05
+									 526.75 L6.04 526.75 L6.04 526.75" class="st14"/>
+						<path d="M46.28 524.74 L46.28 526.75 L48.29 526.75 A2.0113 2.0113 -180 0 0 50.3 524.74 A2.01202 2.01202 -180
+									 0 0 48.29 522.73 A2.01202 2.01202 -180 0 0 46.28 524.74" class="st14"/>
+						<path d="M46.28 524.74 L46.28 524.74 L46.28 524.76" class="st14"/>
+						<path d="M50.3 530.77 L50.3 530.77 A4.02404 4.02404 -180 0 0 54.32 526.75 L54.32 526.75 L54.32 522.73 A4.02404
+									 4.02404 -180 0 0 50.3 518.7 L50.3 518.7 L46.28 518.7 L46.28 518.7 A4.02404 4.02404 -180 0 0
+									 42.25 522.73 L42.25 538.82 L46.28 538.82 L46.28 530.77 L50.3 530.77 L50.3 530.77" class="st14"/>
+					</g>
+					<g id="shape10"    transform="translate(1.54771,-1.54771)">
+						
+						<path d="M17.23 538.82 L41.59 538.82 L58.81 521.6 L58.81 497.24 L41.59 480.01 L17.23 480.01 L0 497.24 L0
+									 521.6 L17.23 538.82 Z" class="st15"/>
+					</g>
+					<g id="shape11"    transform="translate(-4.47894,20.7436)">
+						
+						<rect x="0" y="518.187" width="70.8661" height="20.6361" class="st16"/>
+					</g>
+				</g>
+				
+			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation2">
+			<g id="shape91"   transform="translate(184.379,-349.839)" opr_dashboard_item="1" opr_item_type="opr_update_text" opr_text_value="1" opr_text_color="0" opr_channel="cpu-status&#60;&#62;dataChanged">
+				
+				
+				
+				
+				
+				<rect x="0" y="518.823" width="48.7854" height="20" class="st6"/>
+				<text x="10.41" y="532.42" class="st21"  opr_horiz_align="1">Value</text>			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation2">
+			<g id="shape92"   transform="translate(184.379,-325.666)" opr_dashboard_item="1" opr_item_type="opr_update_text" opr_text_value="1" opr_text_color="1" opr_channel="cpu-status&#60;&#62;dataChanged">
+				
+				
+				
+				
+				
+				<rect x="0" y="518.823" width="48.7854" height="20" class="st6"/>
+				<text x="10.41" y="532.42" class="st21"  opr_horiz_align="1">Value</text>			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation2">
+			<g id="shape93"   transform="translate(241.072,-330.486)" opr_dashboard_item="1" opr_item_type="opr_update_text" opr_text_value="0" opr_text_color="1" opr_channel="cpu-status&#60;&#62;dataChanged">
+				
+				
+				
+				
+				
+				<rect x="0" y="507.515" width="48.7854" height="31.308" class="st6"/>
+				<text x="10.22" y="519.57" class="st21"  opr_horiz_align="1">Static <tspan x="13.3" dy="1.2em" class="st9">Text</tspan></text>			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation3">
+			<g id="group96" transform="translate(187.633,-196.332)"   opr_dashboard_item="1" opr_item_type="opr_update_images" opr_switch_default="grey" opr_channel="cpu-status&#60;&#62;dataChanged">
+				
+				
+				<g id="group97"   opr_switch_value="yellow">
+					
+					
+					<g id="shape98"  >
+						
+						<path d="M24.39 490.04 C10.92 490.04 0 500.96 0 514.43 C0 527.9 10.92 538.82 24.39 538.82 C37.87 538.82 48.79
+									 527.9 48.79 514.43 C48.79 500.96 37.87 490.04 24.39 490.04 ZM38.8 527.81 L9.98 527.81 C8.42
+									 527.81 7.26 526.2 8.17 524.62 C8.9 523.35 21.29 497.95 22.55 495.78 C23.38 494.36 25.35 494.39
+									 26.19 495.78 C27.11 497.35 39.57 522.84 40.6 524.68 C41.36 526.03 40.52 527.81 38.8 527.81 ZM25.54
+									 516.79 L26.75 508.55 L26.75 502.63 L22.03 502.63 L22.03 508.55 L23.23 516.79 L25.54 516.79 ZM22.03
+									 524.66 L26.75 524.66 L26.75 519.94 L22.03 519.94 L22.03 524.66 Z" class="st22"/>
+					</g>
+				</g>
+				<g id="group99"   opr_switch_value="red">
+					
+					
+					<g id="shape100"  >
+						
+						<path d="M24.39 490.04 C10.92 490.04 0 500.96 0 514.43 C0 527.9 10.92 538.82 24.39 538.82 C37.87 538.82 48.79
+									 527.9 48.79 514.43 C48.79 500.96 37.87 490.04 24.39 490.04 ZM37.62 522.82 C38.23 523.43 38.23
+									 524.42 37.62 525.03 L34.95 527.71 C34.34 528.32 33.34 528.32 32.73 527.71 L24.44 519.41 L16.24
+									 527.71 C15.63 528.32 14.65 528.32 14.04 527.71 L11.4 525.03 C10.79 524.41 10.79 523.42 11.4
+									 522.81 L19.57 514.54 L11.11 506.08 C10.5 505.47 10.5 504.48 11.11 503.86 L13.79 501.19 C14.4
+									 500.58 15.39 500.58 16 501.19 L24.43 509.62 L32.79 501.15 C33.4 500.54 34.38 500.54 34.99 501.15
+									 L37.64 503.83 C38.24 504.44 38.24 505.43 37.64 506.05 L29.3 514.49 L37.62 522.82 Z" class="st23"/>
+					</g>
+				</g>
+				<g id="group101"   opr_switch_value="green">
+					
+					
+					<g id="shape102"  >
+						
+						<path d="M24.39 490.04 C10.92 490.04 0 500.96 0 514.43 C0 527.9 10.92 538.82 24.39 538.82 C37.87 538.82 48.79
+									 527.9 48.79 514.43 C48.79 500.96 37.87 490.04 24.39 490.04 ZM39.16 507.57 L21.94 525.02 C21.94
+									 525.02 21.94 525.02 21.94 525.03 L19.29 527.71 C18.68 528.32 17.7 528.32 17.09 527.71 L14.45
+									 525.03 C14.44 525.02 14.44 525.02 14.44 525.01 L9.58 520.09 C8.97 519.47 8.97 518.48 9.57 517.87
+									 L12.22 515.19 C12.83 514.58 13.81 514.58 14.42 515.19 L18.19 519.01 L34.32 502.68 C34.93 502.06
+									 35.91 502.06 36.52 502.68 L39.16 505.35 C39.77 505.97 39.77 506.96 39.16 507.57 Z" class="st24"/>
+					</g>
+				</g>
+				<g id="shape103"   transform="translate(-9.79217E-013,1.58612)" opr_switch_value="grey">
+					
+					
+					<rect  x="0" y="488.464" width="48.8301" height="50.3592" class="st25"/>
+					<switch>
+						<foreignObject x="0" y="488.464" width="48.8301" height="50.3592" requiredExtensions="http://schemas.microsoft.com/visio/2003/SVGExtensions/">
+							
+						</foreignObject>
+						<svg viewBox="0 0 31.026 31.007" enable-background="new" color-interpolation-filters="sRGB" height="50.3592" preserveAspectRatio="xMidYMin" width="48.8301" x="0" y="488.464">
+							<defs>
+								<clipPath id="mfid1">
+									<rect id="mfid2" x="0" y="0" width="31.026" height="31.007"/>
+								</clipPath>
+							</defs>
+							<g clip-path="url(#mfid1)">
+								<defs>
+									<g id="mfid3">
+										<path transform="matrix(0.028336, 0, 0, 0.027447, 0, 0)" d="M547,0 C247,0 0,247 0,547 C0,849 247,1093 547,1093 C849,1093 1094,849 1094,547 C1094,247 849,0 547,0 Z M556,134 C604,134 643,139 675,149 C706,160 732,174 751,193 C770,212 783,235 790,261 C798,288 802,318 802,351 C802,377 800,399 796,418 C791,437 784,455 776,471 C768,487 757,502 744,516 C731,530 716,544 698,559 C684,571 672,582 661,591 C651,600 642,608 634,617 C627,625 620,634 616,643 C611,652 607,663 606,676 L602,701 L497,701 C478,701 465,690 457,669 C451,652 447,634 447,614 C447,583 455,558 471,539 C487,520 505,502 527,482 C541,469 553,458 562,449 C571,440 578,431 583,424 C588,416 592,409 594,402 C597,394 598,386 598,377 C598,362 595,350 590,341 C585,331 578,323 569,319 C560,314 549,311 536,310 C524,308 510,307 496,307 C476,307 456,308 435,309 C414,310 399,311 392,311 C377,311 367,308 362,301 C356,294 354,284 354,270 L354,173 C374,164 400,156 432,148 C464,139 506,134 556,134 Z M540,769 C581,769 611,777 628,794 C645,811 654,838 654,875 C654,912 645,939 628,955 C611,972 581,980 540,980 C499,980 470,972 452,955 C435,939 426,912 426,875 C426,838 435,811 452,794 C470,777 499,769 540,769 Z"/>
+									</g>
+								</defs>
+								<g transform="matrix(0.028336, 0, 0, 0.027447, 0, 0)">
+									<g fill-rule="evenodd" stroke="#000000" stroke-miterlimit="10" fill="#b3b3b3">
+										<use xlink:href="#mfid3" transform="matrix(35.29, -0, -0, 36.433, -0, 0)" stroke="none"/>
+									</g>
+								</g>
+							</g>
+						</svg>
+					</switch>
+					<rect  x="0" y="488.464" width="48.8301" height="50.3592" class="st25"/>
+				</g>
+			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation4">
+			<g id="group108" transform="translate(364.677,-52.6997)"   opr_chart_auto_scale="0" opr_chart_max_value="100" opr_chart_min_value="0" opr_mouse_over="1" opr_chart_period="10" opr_dashboard_item="1" opr_item_type="opr_update_sparkline" opr_chart_fill="1" opr_channel="cpu-status&#60;&#62;dataChanged">
+				
+				
+				
+				<g id="shape109"  >
+					
+					<path d="M137.27 538.7 C131.09 538.7 0 538.82 0 538.82 C0.74 535.89 2.28 527.82 2.94 527.86 C4.56 527.94 4.88
+								 515.9 6.1 515.9 C11.33 515.9 15.91 515.9 20.67 515.9 C21.88 515.9 23.1 501.66 24.31 501.66 C28.16
+								 501.66 29.64 501.77 33.19 501.77 C34.4 501.77 36.05 490.49 38.89 490.27 C41 490.1 44.74 509.63 45.95
+								 509.63 C53.88 509.63 57.32 509.63 64.39 509.63 C65.6 509.63 66.81 501.09 68.03 501.09 C75.96 501.09
+								 82.82 501.09 89.89 501.09 C91.1 501.09 92.32 514.19 93.53 514.19 C96.03 514.19 98.49 514.19 100.82
+								 514.19 C102.03 514.19 103.25 523.96 104.46 523.87 C105.67 523.77 106.89 513.62 108.1 513.62 C109.32
+								 513.62 110.53 513.62 111.74 513.62 C112.96 513.62 115.19 518.87 115.39 519.31 C115.58 519.76 117.82
+								 530.13 119.03 530.13 C120.24 530.13 121.46 530.13 122.67 530.13 C123.89 530.13 125.1 523.3 126.32
+								 523.3 C128.82 523.3 131.28 523.3 133.6 523.3 C134.82 523.3 136.03 538.68 137.24 538.68 L137.27 538.7
+								 Z" class="st26"/>
+				</g>
+				<g id="shape110"   transform="translate(60.75,-26.1282)">
+					
+					<ellipse cx="3.54331" cy="535.279" rx="3.54331" ry="3.54331" class="st27"/>
+				</g>
+				<g id="shape111"   transform="translate(66.7208,-10.7309)">
+					
+					
+					
+					
+					<rect x="0" y="514.679" width="50.7222" height="24.1441" class="st25"/>
+					<text x="4" y="523.75" class="st3" >130<tspan x="4" dy="1.2em" class="st9">14</tspan>:04:33</text>				</g>
+			</g>
+		</a>
+		<g id="shape126"   transform="translate(584.708,-315.983)" opr_dashboard_item="1" opr_item_type="opr_update_feed" opr_feed_max_items="10" opr_channel="rss&#60;&#62;newItem">
+			
+			
+			<rect x="0" y="405.594" width="188.158" height="133.228" class="st28"/>
+		</g>
+		<a class="ddown" xlink:href="#/show/documentation5">
+			<g id="shape127"   transform="translate(584.919,-218.107)">
+				
+				
+				
+				
+				<rect x="0" y="453.783" width="190.781" height="85.0394" class="st6"/>
+				<text x="4" y="470.38" class="st7" >List of Elements<tspan x="4" dy="1.32em" class="st10">Shows a feed of sub</tspan><tspan class="st10">-</tspan><tspan class="st10">dashboards</tspan><tspan class="st10">.</tspan></text>			</g>
+		</a>
+		<g id="group129" transform="translate(584.919,-118.894)"  >
+			
+			<g id="documentation.svg_shape128"   opr_dashboard_item="1" opr_item_type="opr_update_group" opr_channel="group_data&#60;&#62;dataChanged">
+				
+				
+				<rect x="0" y="393.134" width="190.781" height="145.689" class="st2"/>
+			</g>
+			
+			
+		</g>
+		<g id="shape136"   transform="translate(359.829,-118.894)" opr_dashboard_item="1" opr_item_type="opr_update_url" opr_channel="http://www.tagesschau.de/templates/pages/multimedia/livestream_player.jsp&#10;">
+			
+			
+			<rect x="0" y="393.134" width="203.274" height="145.689" class="st31"/>
+		</g>
+		<a class="ddown" xlink:href="#/show/documentation5">
+			<g id="shape137"   transform="translate(359.829,-218.107)">
+				
+				
+				
+				
+				<rect x="0" y="453.783" width="190.781" height="85.0394" class="st6"/>
+				<text x="4" y="470.38" class="st7" >Web Page<tspan x="4" dy="1.32em" class="st10">Shows a web page on top of the dashboard</tspan><tspan class="st10">.</tspan></text>			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation5">
+			<g id="group156" transform="translate(652.28,-23.1886)"   opr_chart_max_value="100" opr_dashboard_item="1" opr_item_type="opr_update_bar_chart" opr_bar_numbers="1" opr_channel="summary&#60;&#62;dataChanged" opr_field="summaryvalue_1;summaryvalue_2;summaryvalue_3;summaryvalue_4;summaryvalue_5" opr_chart_numbers="1">
+				
+				
+				<g id="shape157"   transform="translate(0.601942,0)">
+					
+					
+					
+					
+					<rect x="0" y="525.832" width="23.5803" height="12.9903" class="st32"/>
+					<text x="9.01" y="535.33" class="st33"  opr_horiz_align="1">1</text>				</g>
+				<g id="shape158"   transform="translate(29.1933,0)">
+					
+					
+					
+					
+					<rect x="0" y="525.832" width="23.5803" height="12.9903" class="st32"/>
+					<text x="9.01" y="535.33" class="st33"  opr_horiz_align="1">2</text>				</g>
+				<g id="shape159"   transform="translate(57.7846,0)">
+					
+					
+					
+					
+					<rect x="0" y="525.832" width="23.5803" height="12.9903" class="st32"/>
+					<text x="9.01" y="535.33" class="st33"  opr_horiz_align="1">3</text>				</g>
+				<g id="group160" transform="translate(2.26772,-14.1732)"   opr_bar_group="1">
+					
+					
+					<g id="shape161"   transform="translate(55.2515,0)">
+						
+						
+						<rect x="0" y="478.02" width="23.422" height="60.8031" class="st34"/>
+					</g>
+					<g id="shape162"   transform="translate(27.6257,0)">
+						
+						
+						<rect x="0" y="497.72" width="23.422" height="41.1024" class="st35"/>
+					</g>
+					<g id="shape163"  >
+						
+						
+						<rect x="0" y="472.492" width="23.422" height="66.3307" class="st36"/>
+					</g>
+					<g id="shape164"   transform="translate(82.8772,0)">
+						
+						
+						<rect x="0" y="516.287" width="23.422" height="22.5354" class="st37"/>
+					</g>
+				</g>
+				<g id="shape165"   transform="translate(86.3759,0)">
+					
+					
+					
+					
+					<rect x="0" y="525.832" width="23.5803" height="12.9903" class="st32"/>
+					<text x="9.01" y="535.33" class="st33"  opr_horiz_align="1">4</text>				</g>
+			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation5">
+			<g id="group166" transform="translate(520.583,-6.74821)"   opr_chart_max_value="100" opr_dashboard_item="1" opr_item_type="opr_update_donut_gauge" opr_chart_numbers="1" opr_channel="cpu-status&#60;&#62;dataChanged">
+				
+				
+				
+				<g id="group167" transform="translate(26.3748,-27.0404)"  >
+					
+					<g id="shape168"   transform="translate(30.7571,-34.6465)">
+						
+						<path d="M-0 508.97 A32.2518 32.2518 0 0 1 31.89 536.42 L15.95 538.82 A16.1259 16.1259 -180 0 0 -0 525.09
+									 L0 508.97 Z" class="st38"/>
+					</g>
+					<g id="shape169"   transform="translate(30.2987,-2.27374E-013)">
+						
+						<path d="M32.35 501.78 A32.2518 32.2518 0 0 1 -0 538.82 L0.23 522.7 A16.1259 16.1259 -180 0 0 16.41 504.18
+									 L32.35 501.78 Z" class="st39"/>
+					</g>
+					<g id="shape170"  >
+						
+						<path d="M30.3 538.82 A32.2518 32.2518 0 0 1 -0 516.28 L15.38 511.43 A16.1259 16.1259 -180 0 0 30.53 522.7
+									 L30.3 538.82 Z" class="st40"/>
+					</g>
+					<g id="shape171"   transform="translate(0,-22.5441)">
+						
+						<path d="M0 538.82 A32.2518 32.2518 0 0 1 30.76 496.87 L30.76 512.99 A16.1259 16.1259 -180 0 0 15.38 533.97
+									 L0 538.82 Z" class="st41"/>
+					</g>
+				</g>
+				<g id="shape172"   transform="translate(-328.7,101.836) rotate(-49.276)">
+					
+					<path d="M0 538.82 L3.78 538.82" class="st42"/>
+				</g>
+				<g id="shape173"   transform="translate(437.562,96.3965) rotate(41.1312)">
+					
+					<path d="M0 538.82 L3.78 538.82" class="st42"/>
+				</g>
+				<g id="shape174"   transform="translate(468.812,828.877) rotate(126.652)">
+					
+					<path d="M0 538.82 L3.78 538.82" class="st42"/>
+				</g>
+				<g id="shape175"   transform="translate(-289.277,893.687) rotate(-143.756)">
+					
+					<path d="M0 538.82 L3.78 538.82" class="st42"/>
+				</g>
+				<g id="shape176"   transform="translate(83.5993,-71.1359)">
+					
+					
+					
+					
+					<rect x="0" y="494.978" width="11.3614" height="43.8449" class="st32"/>
+					<text x="-0" y="519.9" class="st33" >1</text>				</g>
+				<g id="shape177"   transform="translate(89.1055,-24.2871)">
+					
+					
+					
+					
+					<rect x="0" y="526.726" width="25.6978" height="12.0968" class="st32"/>
+					<text x="-0" y="535.77" class="st33" >2</text>				</g>
+				<g id="shape178"   transform="translate(21.26,0)">
+					
+					
+					
+					
+					<rect x="0" y="489.875" width="11.6548" height="48.9472" class="st32"/>
+					<text x="6.09" y="517.35" class="st33"  opr_horiz_align="2">3</text>				</g>
+				<g id="shape179"   transform="translate(5.9952E-015,-80.25)">
+					
+					
+					
+					
+					<rect x="0" y="526.726" width="25.8307" height="12.0968" class="st32"/>
+					<text x="20.27" y="535.77" class="st33"  opr_horiz_align="2">4</text>				</g>
+			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation8">
+			<g id="group181" transform="translate(314.162,-327.273)"   opr_item_type="opr_update_visibility" opr_channel="cpu-status&#60;&#62;dataChanged" opr_visibility_rule="visibility==true" opr_dashboard_item="1">
+				
+				<g id="group17" transform="translate(0,-1.68232)"   >
+					
+					
+					<g id="shape18"   >
+						
+						<path d="M0 523.17 A15.654 15.654 0 0 1 31.31 523.17 A15.654 15.654 0 1 1 0 523.17 Z" class="st12"/>
+					</g>
+					<g id="shape19"    transform="translate(1.5654,-12.3667)">
+						
+						<rect x="0" y="532.248" width="28.1772" height="6.57468" class="st43"/>
+					</g>
+					<g id="shape20"    transform="translate(-19.7791,10.436)">
+						
+						<rect x="0" y="528.387" width="70.8661" height="10.436" class="st16"/>
+					</g>
+				</g>
+				
+			</g>
+		</a>
+		<a class="ddown" xlink:href="#/show/documentation4">
+			<g id="group182" transform="translate(208.772,-52.6997)"   opr_dashboard_item="1" opr_chart_auto_scale="0" opr_chart_max_value="100" opr_chart_min_value="0" opr_mouse_over="1" opr_chart_period="10" opr_item_type="opr_update_sparkline" opr_chart_numbers="0" opr_channel="cpu-status&#60;&#62;dataChanged">
+				
+				
+				
+				<g id="shape183"   opr_line_design="chart">
+					
+					
+					<path d="M0 505.7 C1.08 507.23 1.8 505.06 2.52 503.97 C5.12 500.03 7.72 509.92 9.28 511.06 C10.25 511.77 10.82
+								 509.03 11.69 508.98 C13.7 508.85 17.36 523 19.53 528.74 C21.65 534.33 22.36 531.98 23.97 529.87
+								 C25.41 527.98 27.55 526.28 30.3 517.86 C31.91 512.89 33.74 505.58 34.95 505.52 C35.84 505.47 36.41
+								 509.32 37.24 509.91 C38.16 510.56 39.42 507.19 40.87 506.11 C43.59 504.08 47.02 510.08 49.75 511.59
+								 C51.25 512.42 52.55 511.89 53.6 508.87 C55.1 504.54 56.09 495.09 56.98 494.85 C57.68 494.65 58.31
+								 500.23 59.49 501.12 C60.68 502.02 62.42 498.22 63.83 497.63 C65.06 497.12 66.04 499.07 66.86 501.29
+								 C69.44 508.23 70.54 517.74 73.81 526.42 C75.62 531.2 78.08 535.73 80.01 537.69 C81.98 539.69 83.39
+								 539.02 84.51 536.31 C86.56 531.36 87.64 519.64 89.94 512.63 C91.17 508.85 92.76 506.45 94.01 500.66
+								 C94.82 496.89 95.49 491.68 96.46 490.09 C97.25 488.8 98.23 489.84 99.2 491.83 C101.27 496.05 103.28
+								 504.6 106.04 504.66 C107.64 504.69 109.49 501.85 111.17 502.69 C112.4 503.3 113.55 505.88 114.52
+								 506.53 C115.63 507.29 116.52 505.49 117.09 502.42 C117.91 497.96 118.06 490.81 119.38 489.96 C120.27
+								 489.38 121.69 491.66 122.89 491.63 C124.2 491.61 125.26 488.8 126.26 489.06 C127.88 489.5 129.38
+								 498.01 130.67 500.72 C132.18 503.88 133.42 499.1 136.18 501.1 C136.92 501.64 137.78 502.68 138.46
+								 505.7" class="st46"/>
+				</g>
+				<g id="shape184"   transform="translate(48.4609,-24.8795)">
+					
+					<ellipse cx="2.42063" cy="536.402" rx="2.42063" ry="2.42063" class="st27"/>
+				</g>
+				<g id="shape185"   transform="translate(62.5707,-17.9813)" opr_line_design="mouseover">
+					
+					
+					
+					
+					
+					<rect x="0" y="512.758" width="60.3461" height="26.0643" class="st25"/>
+					<text x="4" y="522.79" class="st47" >130<tspan x="4" dy="1.2em" class="st9">14</tspan>:04:33</text>				</g>
+			</g>
+		</a>
+	</g>
+</svg>

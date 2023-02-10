@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="10.506in" height="5.91269in" viewBox="0 0 756.435 425.713" xml:space="preserve" color-interpolation-filters="sRGB" class="bvd00e3a6d09beb11e9b25d07ea6016552e st35" preserveAspectRatio="xMidYMin" fileId="bvd00e3a6d09beb11e9b25d07ea6016552e" opr_dashboard_title="test-dashboard-scaling" opr_dashboard_show_in_menu="true">
+<style type="text/css"><![CDATA[
+		.bg {fill:#ffffff;;;;;;;} 
+	
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st1 {fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st2 {fill:#f1f2f3;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st3 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st4 {fill:#000000;font-family:Roboto;font-size:1.99999em;font-weight:bold}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st5 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st6 {visibility:visible}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st7 {fill:#000000;fill-opacity:0.098;filter:url(#filter_1.3333333730698);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.098}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st8 {fill:#ffffff;fill-opacity:0.95;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.098;stroke-width:0.5}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st9 {fill:#000000;font-family:Roboto;font-size:0.666664em}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st10 {fill:#a5a5a5;font-family:Roboto;font-size:0.75em}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st11 {fill:#000000;font-family:Roboto;font-size:0.833336em;font-weight:bold}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st12 {stroke:#d8d8d8;stroke-width:1}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st13 {fill:none;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st14 {fill:#323435;font-family:Arial;font-size:0.666664em;opacity:0.498039}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st15 {fill:none}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st16 {stroke:#0073e7;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st17 {fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st18 {fill:#000000;font-family:Arial;font-size:0.833336em}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st19 {font-size:1em}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st20 {fill:none;stroke:none;stroke-width:0.999999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st21 {stroke:#bfbfbf;stroke-linecap:butt;stroke-width:0.749999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st22 {stroke:#000000;stroke-linecap:butt;stroke-width:0.749999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st23 {fill:none;stroke:#d9d9d9;stroke-width:0.999999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st24 {stroke:#d9d9d9;stroke-linecap:butt;stroke-width:0.749999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st25 {stroke:#d9d9d9;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.749999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st26 {fill:none;stroke:none;stroke-linecap:butt;stroke-width:0.749999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st27 {fill:#d9d9d9;font-family:Arial;font-size:0.666664em}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st28 {stroke:#0073e7;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.999999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st29 {stroke:#c6179d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.999999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st30 {stroke:#7425ad;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.999999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st31 {stroke:#231ca5;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.999999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st32 {stroke:#29ceff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.999999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st33 {stroke:#2fd6c3;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.999999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e .st34 {stroke:#323435;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.999999}
+	 .bvd00e3a6d09beb11e9b25d07ea6016552e.st35 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	
+	 ]]></style>
+
+	<defs id="Filters">
+		<filter id="filter_1.3333333730698">
+			<feGaussianBlur stdDeviation="1.3333333730698"/>
+		</filter>
+	</defs>
+	<g opr_background="bg">
+		
+		
+		
+		
+		
+		<g id="shape384" transform="translate(228.04,-389.811)">
+			
+			
+			
+			
+			<rect x="0" y="401.368" width="300.354" height="24.3453" class="st3"/>
+			<text x="23.63" y="420.74" class="st4" opr_horiz_align="1">SYSTEM USAGE DETAIL</text>		</g>
+		<g id="shape1238" transform="translate(209.175,-218.635)">
+			
+			<rect x="0" y="404.864" width="216.565" height="20.849" class="st5"/>
+		</g>
+		<g id="shape1489" transform="translate(15.3905,-262.882)">
+			
+			<g id="shadow1489" transform="matrix(1,0,0,1,1.41421,1.41421)" class="st6">
+				<rect x="0" y="318.681" width="525.697" height="107.033" class="st7"/>
+			</g>
+			<rect x="0" y="318.681" width="525.697" height="107.033" class="st8"/>
+		</g>
+		<g id="shape1557" transform="translate(550.071,-318.891)">
+			
+			<g id="shadow1557" transform="matrix(1,0,0,1,1.41421,1.41421)" class="st6">
+				<rect x="0" y="374.69" width="188.963" height="51.0236" class="st7"/>
+			</g>
+			<rect x="0" y="374.69" width="188.963" height="51.0236" class="st8"/>
+		</g>
+		<g id="shape1686" transform="translate(500.826,-266.426)">
+			
+			
+			
+			
+			<rect x="0" y="405.713" width="36.3881" height="20" class="st3"/>
+			<text x="10.56" y="418.11" class="st9" opr_horiz_align="1">DAY</text>		</g>
+		<g id="shape1690" transform="translate(209.169,-25.1254)">
+			
+			<rect x="0" y="404.864" width="216.565" height="20.849" class="st5"/>
+		</g>
+		<g id="shape1691" transform="translate(15.3905,-16.7899)">
+			
+			<g id="shadow1691" transform="matrix(1,0,0,1,1.41421,1.41421)" class="st6">
+				<rect x="0" y="324.35" width="525.697" height="101.364" class="st7"/>
+			</g>
+			<rect x="0" y="324.35" width="525.697" height="101.364" class="st8"/>
+		</g>
+		<g id="group1715" transform="translate(81.6222,-27.8349)">
+			
+		</g>
+		<g id="shape1725" transform="translate(494.547,-16.4702)">
+			
+			
+			
+			
+			<rect x="0" y="405.713" width="36.3881" height="20" class="st3"/>
+			<text x="10.56" y="418.11" class="st9" opr_horiz_align="1">DAY</text>		</g>
+		<g id="shape1731" transform="translate(550.071,-259.364)">
+			
+			<g id="shadow1731" transform="matrix(1,0,0,1,1.41421,1.41421)" class="st6">
+				<rect x="0" y="374.69" width="188.963" height="51.0236" class="st7"/>
+			</g>
+			<rect x="0" y="374.69" width="188.963" height="51.0236" class="st8"/>
+		</g>
+		<g id="shape1732" transform="translate(550.071,-199.836)">
+			
+			<g id="shadow1732" transform="matrix(1,0,0,1,1.41421,1.41421)" class="st6">
+				<rect x="0" y="374.69" width="188.963" height="51.0236" class="st7"/>
+			</g>
+			<rect x="0" y="374.69" width="188.963" height="51.0236" class="st8"/>
+		</g>
+		<g id="shape1733" transform="translate(550.071,-140.146)">
+			
+			<g id="shadow1733" transform="matrix(1,0,0,1,1.41421,1.41421)" class="st6">
+				<rect x="0" y="374.69" width="188.963" height="51.0236" class="st7"/>
+			</g>
+			<rect x="0" y="374.69" width="188.963" height="51.0236" class="st8"/>
+		</g>
+		<g id="shape1734" transform="translate(550.071,-80.6726)">
+			
+			<g id="shadow1734" transform="matrix(1,0,0,1,1.41421,1.41421)" class="st6">
+				<rect x="0" y="374.69" width="188.963" height="51.0236" class="st7"/>
+			</g>
+			<rect x="0" y="374.69" width="188.963" height="51.0236" class="st8"/>
+		</g>
+		<g id="shape1735" transform="translate(550.071,-21.1991)">
+			
+			<g id="shadow1735" transform="matrix(1,0,0,1,1.41421,1.41421)" class="st6">
+				<rect x="0" y="374.69" width="188.963" height="51.0236" class="st7"/>
+			</g>
+			<rect x="0" y="374.69" width="188.963" height="51.0236" class="st8"/>
+		</g>
+		<g id="shape1736" transform="translate(573.686,-347.418)">
+			
+			
+			
+			
+			<rect x="0" y="405.713" width="141.732" height="20" class="st3"/>
+			<text x="18.05" y="418.41" class="st10" opr_horiz_align="1">PROCESS ARCHITECTURE</text>		</g>
+		<g id="group1738" transform="translate(556.36,-320.425)">
+			
+			
+			<g id="shape1738">
+				
+				
+				<text x="70.59" y="414.62" class="st11" opr_horiz_align="1">INTEL64</text>			</g>
+		</g>
+		<g id="shape1741" transform="translate(573.686,-289.521)">
+			
+			
+			
+			
+			<rect x="0" y="405.713" width="141.732" height="20" class="st3"/>
+			<text x="55.91" y="418.41" class="st10" opr_horiz_align="1">MODEL</text>		</g>
+		<g id="group1742" transform="translate(555.261,-262.528)">
+			
+			
+			<g id="shape1743" transform="translate(0,-9.18974)" opr_dashboard_item="1" opr_item_type="opr_update_text" opr_text_value="opr_true" opr_text_color="opr_true" opr_channel_vars="null">
+				
+				
+				<rect x="0" y="406.721" width="178.583" height="18.9921" class="st3"/>
+			</g>
+			<g id="shape1744" transform="translate(0.488714,0)">
+				
+				<rect x="0" y="412.377" width="178.094" height="13.3367" class="st3"/>
+			</g>
+			<g id="shape1742">
+				
+				
+				<text x="21.42" y="414.62" class="st11" opr_horiz_align="1">VMWARE VIRTUAL PLATFORM</text>			</g>
+		</g>
+		<g id="shape1745" transform="translate(574.679,-227.867)">
+			
+			
+			
+			
+			<rect x="0" y="405.713" width="141.732" height="20" class="st3"/>
+			<text x="65.1" y="418.41" class="st10" opr_horiz_align="1">OS</text>		</g>
+		<g id="group1746" transform="translate(556.254,-200.874)">
+			
+			
+			<g id="shape1747" transform="translate(0,-9.18974)" opr_dashboard_item="1" opr_item_type="opr_update_text" opr_text_value="opr_true" opr_text_color="opr_true" opr_channel="SystemMetrics" opr_field="Performance" opr_coloring_rule="&#x23;0073E7&#x3a;Performance&lt;30&#x3b;&#x23;AABBCC&#x3a;Performance&lt;60&#x3b;&#x23;00ff00" opr_visibility_rule="Performance&gt;10" opr_channel_vars="null">
+				
+				
+				<rect x="0" y="406.721" width="178.583" height="18.9921" class="st3"/>
+			</g>
+			<g id="shape1748" transform="translate(0.488714,0)">
+				
+				<rect x="0" y="412.377" width="178.094" height="13.3367" class="st3"/>
+			</g>
+			<g id="shape1746">
+				
+				
+				<text x="66.25" y="414.62" class="st11" opr_horiz_align="1">WINDOWS</text>			</g>
+		</g>
+		<g id="shape1749" transform="translate(573.686,-171.278)">
+			
+			
+			
+			
+			<rect x="0" y="405.713" width="141.732" height="20" class="st3"/>
+			<text x="33.52" y="418.41" class="st10" opr_horiz_align="1">NUMBER OF CPUS</text>		</g>
+		<g id="group1750" transform="translate(555.261,-144.285)">
+			
+			
+			<g id="shape1751" transform="translate(0,-9.18974)" opr_dashboard_item="1" opr_item_type="opr_update_text" opr_text_value="opr_true" opr_text_color="opr_true" opr_channel_vars="null">
+				
+				
+				<rect x="0" y="406.721" width="178.583" height="18.9921" class="st3"/>
+			</g>
+			<g id="shape1752" transform="translate(0.488714,0)">
+				
+				<rect x="0" y="412.377" width="178.094" height="13.3367" class="st3"/>
+			</g>
+			<g id="shape1750">
+				
+				
+				<text x="86.54" y="414.62" class="st11" opr_horiz_align="1">1</text>			</g>
+		</g>
+		<g id="shape1753" transform="translate(573.686,-109.627)">
+			
+			
+			
+			
+			<rect x="0" y="405.713" width="141.732" height="20" class="st3"/>
+			<text x="33.44" y="418.41" class="st10" opr_horiz_align="1">CPU SPEED (MHZ)</text>		</g>
+		<g id="group1754" transform="translate(555.261,-82.6337)">
+			
+			<g id="shape1755" transform="translate(0,-9.18974)" opr_dashboard_item="1" opr_item_type="opr_update_text" opr_text_value="opr_true" opr_text_color="opr_true" opr_channel="SystemMetrics" opr_field="calculatedProperty" opr_calculation_rule="&#x28;Performance&#x2b;10&#x29;&gt;&#x3d;50" opr_channel_vars="null">
+				
+				
+				
+				
+				
+				<rect x="0" y="406.721" width="178.583" height="18.9921" class="st3"/>
+				<text x="77.3" y="419.22" class="st11" opr_horiz_align="1">2,667</text>			</g>
+			<g id="shape1756" transform="translate(0.488714,0)">
+				
+				<rect x="0" y="412.377" width="178.094" height="13.3367" class="st3"/>
+			</g>
+		</g>
+		<g id="shape1757" transform="translate(575.806,-53.1181)">
+			
+			
+			
+			
+			<rect x="0" y="407.855" width="141.732" height="17.8583" class="st3"/>
+			<text x="19.76" y="419.48" class="st10" opr_horiz_align="1">PHYSICAL MEMORY (GB)</text>		</g>
+		<g id="group1758" transform="translate(555.261,-24.4173)">
+			
+			
+			<g id="shape1760" transform="translate(0.488714,0)">
+				
+				<rect x="0" y="412.377" width="178.094" height="13.3367" class="st3"/>
+			</g>
+			<g id="shape1758">
+				
+				
+				<text x="86.54" y="414.62" class="st11" opr_horiz_align="1">4</text>			</g>
+		</g>
+		<g id="shape1763" transform="translate(209.169,-147.44)">
+			
+			<rect x="0" y="404.864" width="216.565" height="20.849" class="st5"/>
+		</g>
+		<g id="shape1764" transform="translate(15.3905,-140.596)">
+			
+			<g id="shadow1764" transform="matrix(1,0,0,1,1.41421,1.41421)" class="st6">
+				<rect x="0" y="324.35" width="525.697" height="101.364" class="st7"/>
+			</g>
+			<rect x="0" y="324.35" width="525.697" height="101.364" class="st8"/>
+		</g>
+		<g id="shape1786" transform="translate(494.547,-140.992)">
+			
+			
+			
+			
+			<rect x="0" y="405.713" width="36.3881" height="20" class="st3"/>
+			<text x="10.56" y="418.11" class="st9" opr_horiz_align="1">DAY</text>		</g>
+		<g id="group1854" transform="translate(34.2911,-150.629)" opr_dashboard_item="1" opr_chart_auto_scale="opr_true" opr_chart_max_value="100" opr_chart_min_value="0" opr_mouse_over="opr_true" opr_chart_period="10" opr_item_type="opr_update_sparkline" opr_chart_numbers="opr_true" opr_channel="SystemMetrics" opr_field="CPU Usage" opr_channel_vars="null">
+			
+			
+			
+			<g id="group1855" transform="translate(0,-11.3386)">
+				
+				<g id="group1856" transform="translate(1.249E-015,-18.0038)">
+					
+					<g id="shape1857" transform="translate(14.1732,845.274) rotate(180)">
+						
+						<path d="M0 425.71 L3.4 425.71" class="st12"/>
+					</g>
+					<g id="shape1858" opr_line_design="number">
+						
+						
+						
+						
+						
+						<rect x="0" y="414.775" width="9.07087" height="10.9381" class="st13"/>
+						<text x="0.17" y="422.64" class="st14" opr_horiz_align="2">50</text>					</g>
+				</g>
+				<g id="shape1859" transform="translate(10.7717,0)" opr_line_design="axis">
+					
+					
+					<path d="M0 382.23 L3.4 382.23 L3.4 425.71 L0 425.71 L0 382.23 Z" class="st15"/>
+					<path d="M0 382.23 L3.4 382.23 L3.4 425.71 L0 425.71" class="st12"/>
+				</g>
+			</g>
+			<g id="group1860" transform="translate(14.1732,0)">
+				
+				<g id="group1861" transform="translate(119.494,-5.68434E-014)">
+					
+					<g id="shape1862" transform="translate(488.152,414.375) rotate(90)">
+						
+						<path d="M0 425.71 L4.15 425.71" class="st12"/>
+					</g>
+					<g id="shape1863">
+						
+						
+						
+						
+						<rect x="0" y="419.076" width="124.878" height="6.63722" class="st13"/>
+						<text x="52.43" y="424.79" class="st14" opr_horiz_align="1">01:57</text>					</g>
+				</g>
+				<g id="group1864" transform="translate(277.673,-5.68434E-014)">
+					
+					<g id="shape1865" transform="translate(488.152,414.375) rotate(90)">
+						
+						<path d="M0 425.71 L4.15 425.71" class="st12"/>
+					</g>
+					<g id="shape1866">
+						
+						
+						
+						
+						<rect x="0" y="419.076" width="124.878" height="6.63722" class="st13"/>
+						<text x="52.43" y="424.79" class="st14" opr_horiz_align="1">01:58</text>					</g>
+				</g>
+				<g id="shape1867" transform="translate(0.8957,-7.19006)">
+					
+					<path d="M0 425.71 L0 421.56 L476.33 421.56 L476.33 425.71 L0 425.71 Z" class="st15"/>
+					<path d="M0 425.71 L0 421.56 L476.33 421.56 L476.33 425.71" class="st12"/>
+				</g>
+				<g id="group1868">
+					
+					<g id="shape1869" transform="translate(449.468,414.375) rotate(90)">
+						
+						<path d="M0 425.71 L4.15 425.71" class="st12"/>
+					</g>
+					<g id="shape1870">
+						
+						
+						
+						
+						<rect x="0" y="419.076" width="93.4476" height="6.63722" class="st13"/>
+						<text x="-0" y="424.79" class="st14">01:56</text>					</g>
+				</g>
+			</g>
+			<g id="shape1871" transform="translate(14.1732,-11.3386)" opr_line_design="chart">
+				
+				
+				<path d="M0 396.77 C3.72 398.1 6.2 396.21 8.68 395.25 C17.6 391.81 26.57 400.46 31.92 401.45 C35.28 402.07 37.21
+							 399.68 40.21 399.63 C47.12 399.52 59.71 411.88 67.2 416.91 C74.47 421.78 76.92 419.74 82.47 417.89 C87.41
+							 416.24 94.79 414.75 104.22 407.4 C109.79 403.05 116.07 396.66 120.25 396.61 C123.31 396.57 125.25 399.93
+							 128.11 400.44 C131.29 401.01 135.6 398.07 140.6 397.13 C149.97 395.35 161.75 400.6 171.14 401.91 C176.32
+							 402.64 180.78 402.18 184.38 399.54 C189.55 395.75 192.97 387.5 196.01 387.28 C198.42 387.11 200.59 391.98
+							 204.66 392.77 C208.75 393.55 214.75 390.24 219.58 389.72 C223.83 389.27 227.18 390.98 230.02 392.92
+							 C238.88 398.98 242.66 407.29 253.93 414.88 C260.14 419.05 268.61 423.01 275.25 424.72 C282.02 426.47
+							 286.88 425.88 290.74 423.51 C297.78 419.19 301.51 408.95 309.41 402.82 C313.65 399.52 319.11 397.42
+							 323.4 392.36 C326.19 389.07 328.49 384.52 331.85 383.12 C334.55 382 337.92 382.91 341.26 384.64 C348.38
+							 388.34 355.32 395.81 364.79 395.86 C370.3 395.89 376.66 393.41 382.45 394.14 C386.69 394.67 390.62 396.92
+							 393.96 397.49 C397.8 398.15 400.85 396.58 402.81 393.9 C405.64 390 406.15 383.75 410.7 383.01 C413.75
+							 382.51 418.63 384.5 422.75 384.48 C427.29 384.45 430.9 382 434.35 382.23 C439.94 382.61 445.08 390.05
+							 449.53 392.42 C454.73 395.18 458.98 391 468.48 392.75 C471.04 393.22 473.99 394.13 476.33 396.77" class="st16"/>
+			</g>
+			<g id="shape1872" transform="translate(180.888,-33.0803)">
+				
+				<ellipse cx="2.7411" cy="422.972" rx="2.7411" ry="2.7411" class="st17"/>
+			</g>
+			<g id="shape1873" transform="translate(221.66,-19.811)" opr_line_design="mouseover">
+				
+				
+				
+				
+				
+				<rect x="0" y="396.997" width="213.779" height="28.7163" class="st5"/>
+				<text x="4" y="408.36" class="st18">130<tspan x="4" dy="1.2em" class="st19">14</tspan>:04:33</text>			</g>
+		</g>
+		<g id="group1874" transform="translate(34.3621,-22.9617)" opr_dashboard_item="1" opr_chart_auto_scale="opr_false" opr_chart_max_value="100" opr_chart_min_value="0" opr_mouse_over="opr_true" opr_chart_period="10" opr_item_type="opr_update_sparkline" opr_chart_numbers="opr_true" opr_channel_vars="null">
+			
+			
+			
+			<g id="group1875" transform="translate(0,-11.3386)">
+				
+				<g id="group1876" transform="translate(1.249E-015,-18.0038)">
+					
+					<g id="shape1877" transform="translate(14.1732,845.274) rotate(180)">
+						
+						<path d="M0 425.71 L3.4 425.71" class="st12"/>
+					</g>
+					<g id="shape1878" opr_line_design="number">
+						
+						
+						
+						
+						
+						<rect x="0" y="414.775" width="9.07087" height="10.9381" class="st13"/>
+						<text x="0.17" y="422.64" class="st14" opr_horiz_align="2">50</text>					</g>
+				</g>
+				<g id="shape1879" transform="translate(10.7717,0)" opr_line_design="axis">
+					
+					
+					<path d="M0 382.23 L3.4 382.23 L3.4 425.71 L0 425.71 L0 382.23 Z" class="st15"/>
+					<path d="M0 382.23 L3.4 382.23 L3.4 425.71 L0 425.71" class="st12"/>
+				</g>
+			</g>
+			<g id="group1880" transform="translate(14.1732,0)">
+				
+				<g id="group1881" transform="translate(119.494,-5.68434E-014)">
+					
+					<g id="shape1882" transform="translate(488.152,414.375) rotate(90)">
+						
+						<path d="M0 425.71 L4.15 425.71" class="st12"/>
+					</g>
+					<g id="shape1883">
+						
+						
+						
+						
+						<rect x="0" y="419.076" width="124.878" height="6.63722" class="st13"/>
+						<text x="52.43" y="424.79" class="st14" opr_horiz_align="1">01:57</text>					</g>
+				</g>
+				<g id="group1884" transform="translate(277.673,-5.68434E-014)">
+					
+					<g id="shape1885" transform="translate(488.152,414.375) rotate(90)">
+						
+						<path d="M0 425.71 L4.15 425.71" class="st12"/>
+					</g>
+					<g id="shape1886">
+						
+						
+						
+						
+						<rect x="0" y="419.076" width="124.878" height="6.63722" class="st13"/>
+						<text x="52.43" y="424.79" class="st14" opr_horiz_align="1">01:58</text>					</g>
+				</g>
+				<g id="shape1887" transform="translate(0.8957,-7.19006)">
+					
+					<path d="M0 425.71 L0 421.56 L476.33 421.56 L476.33 425.71 L0 425.71 Z" class="st15"/>
+					<path d="M0 425.71 L0 421.56 L476.33 421.56 L476.33 425.71" class="st12"/>
+				</g>
+				<g id="group1888">
+					
+					<g id="shape1889" transform="translate(449.468,414.375) rotate(90)">
+						
+						<path d="M0 425.71 L4.15 425.71" class="st12"/>
+					</g>
+					<g id="shape1890">
+						
+						
+						
+						
+						<rect x="0" y="419.076" width="93.4476" height="6.63722" class="st13"/>
+						<text x="0" y="424.79" class="st14">01:56</text>					</g>
+				</g>
+			</g>
+			<g id="shape1891" transform="translate(14.1732,-11.3386)" opr_line_design="chart">
+				
+				
+				<path d="M0 396.77 C3.72 398.1 6.2 396.21 8.68 395.25 C17.6 391.81 26.57 400.46 31.92 401.45 C35.28 402.07 37.21
+							 399.68 40.21 399.63 C47.12 399.52 59.71 411.88 67.2 416.91 C74.47 421.78 76.92 419.74 82.47 417.89 C87.41
+							 416.24 94.79 414.75 104.22 407.4 C109.79 403.05 116.07 396.66 120.25 396.61 C123.31 396.57 125.25 399.93
+							 128.11 400.44 C131.29 401.01 135.6 398.07 140.6 397.13 C149.97 395.35 161.75 400.6 171.14 401.91 C176.32
+							 402.64 180.78 402.18 184.38 399.54 C189.55 395.75 192.97 387.5 196.01 387.28 C198.42 387.11 200.59 391.98
+							 204.66 392.77 C208.75 393.55 214.75 390.24 219.58 389.72 C223.83 389.27 227.18 390.98 230.02 392.92
+							 C238.88 398.98 242.66 407.29 253.93 414.88 C260.14 419.05 268.61 423.01 275.25 424.72 C282.02 426.47
+							 286.88 425.88 290.74 423.51 C297.78 419.19 301.51 408.95 309.41 402.82 C313.65 399.52 319.11 397.42
+							 323.4 392.36 C326.19 389.07 328.49 384.52 331.85 383.12 C334.55 382 337.92 382.91 341.26 384.64 C348.38
+							 388.34 355.32 395.81 364.79 395.86 C370.3 395.89 376.66 393.41 382.45 394.14 C386.69 394.67 390.62 396.92
+							 393.96 397.49 C397.8 398.15 400.85 396.58 402.81 393.9 C405.64 390 406.15 383.75 410.7 383.01 C413.75
+							 382.51 418.63 384.5 422.75 384.48 C427.29 384.45 430.9 382 434.35 382.23 C439.94 382.61 445.08 390.05
+							 449.53 392.42 C454.73 395.18 458.98 391 468.48 392.75 C471.04 393.22 473.99 394.13 476.33 396.77" class="st16"/>
+			</g>
+			<g id="shape1892" transform="translate(180.888,-33.0803)">
+				
+				<ellipse cx="2.7411" cy="422.972" rx="2.7411" ry="2.7411" class="st17"/>
+			</g>
+			<g id="shape1893" transform="translate(221.66,-19.811)" opr_line_design="mouseover">
+				
+				
+				
+				
+				
+				<rect x="0" y="396.997" width="213.779" height="28.7163" class="st5"/>
+				<text x="4" y="408.36" class="st18">130<tspan x="4" dy="1.2em" class="st19">14</tspan>:04:33</text>			</g>
+		</g>
+		<g id="group1894" transform="translate(15.1909,-262.598)" opr_item_type="opr_multiseries" opr_dashboard_item="1" opr_viz_type="line_chart" bvd_legend="opr_true" bvd_stack="opr_false" opr_channel="SystemMetrics" opr_field="CPU Usage&#x3b;Performance" bvd_time="10" bvd_date_time_format="hh&#x3a;mm" bvd_axis_grid_lines="opr_true" opr_channel_vars="null">
+			
+			
+			<g id="group1895" transform="translate(60.3591,-12.328)">
+				
+				<g id="shape1896">
+					
+					<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st20"/>
+				</g>
+				<g id="shape1897">
+					
+					<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st15"/>
+					<path d="M0 425.71 L434.58 425.71" class="st21"/>
+				</g>
+			</g>
+			<g id="group1898" transform="translate(60.2218,-12.6229)">
+				
+				<g id="shape1899">
+					
+					<path d="M0 338.06 L0 425.71 L0 338.06 Z" class="st20"/>
+				</g>
+				<g id="shape1900">
+					
+					<path d="M0 338.06 L0 425.71 L0 338.06 Z" class="st15"/>
+					<path d="M0 338.06 L0 425.71" class="st22"/>
+				</g>
+			</g>
+			<g id="group1901" transform="translate(102.748,-9.70125)">
+				
+				<g id="shape1902">
+					
+					<path d="M0 422.79 L0 425.71 L0 422.79 Z" class="st23"/>
+				</g>
+				<g id="shape1903">
+					
+					<path d="M0 422.79 L0 425.71 L0 422.79 Z" class="st15"/>
+					<path d="M0 422.79 L0 425.71" class="st24"/>
+				</g>
+			</g>
+			<g id="group1904" transform="translate(315.376,-9.70125)">
+				
+				<g id="shape1905">
+					
+					<path d="M0 422.79 L0 425.71 L0 422.79 Z" class="st23"/>
+				</g>
+				<g id="shape1906">
+					
+					<path d="M0 422.79 L0 425.71 L0 422.79 Z" class="st15"/>
+					<path d="M0 422.79 L0 425.71" class="st24"/>
+				</g>
+			</g>
+			<g id="group1907" transform="translate(495.081,-9.70125)">
+				
+				<g id="shape1908">
+					
+					<path d="M0 422.79 L0 425.71 L0 422.79 Z" class="st23"/>
+				</g>
+				<g id="shape1909">
+					
+					<path d="M0 422.79 L0 425.71 L0 422.79 Z" class="st15"/>
+					<path d="M0 422.79 L0 425.71" class="st24"/>
+				</g>
+			</g>
+			<g id="shape1910" transform="translate(60.3591,-12.328)">
+				
+				<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st23"/>
+			</g>
+			<g id="shape1911" transform="translate(60.2218,-12.6229)">
+				
+				<path d="M0 425.71 L0 338.06 L0 425.71 Z" class="st23"/>
+			</g>
+			<g id="shape1912" transform="translate(53.5,-12.328)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st23"/>
+			</g>
+			<g id="shape1913" transform="translate(53.5,-12.328)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st15"/>
+				<path d="M6.87 425.71 L0 425.71" class="st24"/>
+			</g>
+			<g id="shape1914" transform="translate(53.5,-25.1835)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st23"/>
+			</g>
+			<g id="shape1915" transform="translate(53.5,-25.1835)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st15"/>
+				<path d="M6.87 425.71 L0 425.71" class="st24"/>
+			</g>
+			<g id="shape1916" transform="translate(53.5,-37.4546)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st23"/>
+			</g>
+			<g id="shape1917" transform="translate(53.5,-37.4546)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st15"/>
+				<path d="M6.87 425.71 L0 425.71" class="st24"/>
+			</g>
+			<g id="shape1918" transform="translate(53.5,-50.31)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st23"/>
+			</g>
+			<g id="shape1919" transform="translate(53.5,-50.31)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st15"/>
+				<path d="M6.87 425.71 L0 425.71" class="st24"/>
+			</g>
+			<g id="shape1920" transform="translate(53.5,-62.5811)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st23"/>
+			</g>
+			<g id="shape1921" transform="translate(53.5,-62.5811)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st15"/>
+				<path d="M6.87 425.71 L0 425.71" class="st24"/>
+			</g>
+			<g id="shape1922" transform="translate(53.5,-74.8527)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st23"/>
+			</g>
+			<g id="shape1923" transform="translate(53.5,-74.8527)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st15"/>
+				<path d="M6.87 425.71 L0 425.71" class="st24"/>
+			</g>
+			<g id="shape1924" transform="translate(53.5,-87.7079)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st23"/>
+			</g>
+			<g id="shape1925" transform="translate(53.5,-87.7079)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st15"/>
+				<path d="M6.87 425.71 L0 425.71" class="st24"/>
+			</g>
+			<g id="shape1926" transform="translate(53.5,-99.979)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st23"/>
+			</g>
+			<g id="shape1927" transform="translate(53.5,-99.979)">
+				
+				<path d="M6.87 425.71 L0 425.71 L6.87 425.71 Z" class="st15"/>
+				<path d="M6.87 425.71 L0 425.71" class="st24"/>
+			</g>
+			<g id="group1928" transform="translate(19.9302,-1.13687E-013)">
+				
+				<g id="shape1929" transform="translate(40.4289,-12.328)">
+					
+					<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st15"/>
+					<path d="M0 425.71 L434.58 425.71" class="st25"/>
+				</g>
+				<g id="shape1930" transform="translate(0,-0.00140878)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="164.616" height="8.41453" class="st26"/>
+					<text x="61.85" y="423.91" class="st27" opr_horiz_align="1">6:15:40 PM</text>				</g>
+				<g id="shape1931" transform="translate(213.45,-0.00140878)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="164.616" height="8.41453" class="st26"/>
+					<text x="61.85" y="423.91" class="st27" opr_horiz_align="1">6:15:45 PM</text>				</g>
+				<g id="shape1932" transform="translate(370.757,5.68434E-014)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="135.21" height="8.41453" class="st26"/>
+					<text x="47.15" y="423.91" class="st27" opr_horiz_align="1">6:15:49 PM</text>				</g>
+			</g>
+			<g id="group1933" transform="translate(0,-10.5195)">
+				
+				<g id="shape1934" transform="translate(60.2218,-2.10341)">
+					
+					<path d="M0 425.71 L0 338.06 L0 425.71 Z" class="st15"/>
+					<path d="M0 425.71 L0 338.06" class="st25"/>
+				</g>
+				<g id="shape1935" transform="translate(32.9231,0)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="16.4616" height="8.41453" class="st26"/>
+					<text x="12.02" y="423.91" class="st27" opr_horiz_align="2">0</text>				</g>
+				<g id="shape1936" transform="translate(16.4616,-12.5212)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="32.9231" height="8.41453" class="st26"/>
+					<text x="24.03" y="423.91" class="st27" opr_horiz_align="2">30</text>				</g>
+				<g id="shape1937" transform="translate(16.4616,-25.0424)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="32.9231" height="8.41453" class="st26"/>
+					<text x="24.03" y="423.91" class="st27" opr_horiz_align="2">60</text>				</g>
+				<g id="shape1938" transform="translate(16.4616,-37.5636)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="32.9231" height="8.41453" class="st26"/>
+					<text x="24.03" y="423.91" class="st27" opr_horiz_align="2">90</text>				</g>
+				<g id="shape1939" transform="translate(0,-50.0847)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="49.3847" height="8.41453" class="st26"/>
+					<text x="36.04" y="423.91" class="st27" opr_horiz_align="2">120</text>				</g>
+				<g id="shape1940" transform="translate(0,-62.6062)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="49.3847" height="8.41453" class="st26"/>
+					<text x="36.04" y="423.91" class="st27" opr_horiz_align="2">150</text>				</g>
+				<g id="shape1941" transform="translate(0,-75.1271)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="49.3847" height="8.41453" class="st26"/>
+					<text x="36.04" y="423.91" class="st27" opr_horiz_align="2">180</text>				</g>
+				<g id="shape1942" transform="translate(0,-87.6486)">
+					
+					
+					
+					
+					
+					<rect x="0" y="417.299" width="49.3847" height="8.41453" class="st26"/>
+					<text x="36.04" y="423.91" class="st27" opr_horiz_align="2">210</text>				</g>
+			</g>
+			<g id="group1943" transform="translate(60.2218,-12.6229)">
+				
+				<g id="group1944" transform="translate(0.137318,-12.5606)">
+					
+					<g id="shape1945">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st23"/>
+					</g>
+					<g id="shape1946">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st15"/>
+						<path d="M0 425.71 L434.58 425.71" class="st24"/>
+					</g>
+				</g>
+				<g id="group1947" transform="translate(0.137318,-24.8317)">
+					
+					<g id="shape1948">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st23"/>
+					</g>
+					<g id="shape1949">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st15"/>
+						<path d="M0 425.71 L434.58 425.71" class="st24"/>
+					</g>
+				</g>
+				<g id="group1950" transform="translate(0.137318,-37.6871)">
+					
+					<g id="shape1951">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st23"/>
+					</g>
+					<g id="shape1952">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st15"/>
+						<path d="M0 425.71 L434.58 425.71" class="st24"/>
+					</g>
+				</g>
+				<g id="group1953" transform="translate(0.137318,-49.9582)">
+					
+					<g id="shape1954">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st23"/>
+					</g>
+					<g id="shape1955">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st15"/>
+						<path d="M0 425.71 L434.58 425.71" class="st24"/>
+					</g>
+				</g>
+				<g id="group1956" transform="translate(0.137318,-62.2297)">
+					
+					<g id="shape1957">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st20"/>
+					</g>
+					<g id="shape1958">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st15"/>
+						<path d="M0 425.71 L434.58 425.71" class="st21"/>
+					</g>
+				</g>
+				<g id="group1959" transform="translate(0.137318,-75.0849)">
+					
+					<g id="shape1960">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st23"/>
+					</g>
+					<g id="shape1961">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st15"/>
+						<path d="M0 425.71 L434.58 425.71" class="st24"/>
+					</g>
+				</g>
+				<g id="group1962" transform="translate(0.137318,-87.356)">
+					
+					<g id="shape1963">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st23"/>
+					</g>
+					<g id="shape1964">
+						
+						<path d="M0 425.71 L434.58 425.71 L0 425.71 Z" class="st15"/>
+						<path d="M0 425.71 L434.58 425.71" class="st24"/>
+					</g>
+				</g>
+				<g id="group1965" transform="translate(42.5258,0)">
+					
+					<g id="shape1966">
+						
+						<path d="M0 338.06 L0 425.71 L0 338.06 Z" class="st23"/>
+					</g>
+					<g id="shape1967">
+						
+						<path d="M0 338.06 L0 425.71 L0 338.06 Z" class="st15"/>
+						<path d="M0 338.06 L0 425.71" class="st24"/>
+					</g>
+				</g>
+				<g id="group1968" transform="translate(255.154,0)">
+					
+					<g id="shape1969">
+						
+						<path d="M0 338.06 L0 425.71 L0 338.06 Z" class="st23"/>
+					</g>
+					<g id="shape1970">
+						
+						<path d="M0 338.06 L0 425.71 L0 338.06 Z" class="st15"/>
+						<path d="M0 338.06 L0 425.71" class="st24"/>
+					</g>
+				</g>
+				<g id="group1971" transform="translate(434.859,0)">
+					
+					<g id="shape1972">
+						
+						<path d="M0 338.06 L0 425.71 L0 338.06 Z" class="st20"/>
+					</g>
+					<g id="shape1973">
+						
+						<path d="M0 338.06 L0 425.71 L0 338.06 Z" class="st15"/>
+						<path d="M0 338.06 L0 425.71" class="st21"/>
+					</g>
+				</g>
+				<g id="shape1974" transform="translate(1.82409,-44.5001)">
+					
+					
+					<path d="M0 392.01 L81.29 409.19 L189.68 391.58 L305.8 425.71 L432.11 383.15 L0 392.01 Z" class="st15"/>
+					<path d="M0 392.01 L81.29 409.19 L189.68 391.58 L305.8 425.71 L432.11 383.15" class="st28"/>
+				</g>
+				<g id="shape1975" transform="translate(0.619553,-24.6442)">
+					
+					
+					<path d="M0 387.56 L81.51 411.04 L191.17 397.99 L307.63 425.71 L434.76 392.77 L0 387.56 Z" class="st15"/>
+					<path d="M0 387.56 L81.51 411.04 L191.17 397.99 L307.63 425.71 L434.76 392.77" class="st29"/>
+				</g>
+				<g id="shape1976" transform="translate(2.23821E-012,-41.3211)">
+					
+					
+					<path d="M0 417.89 L84.48 399.62 L192 408.75 L307.21 402.23 L433.93 425.71 L0 417.89 Z" class="st15"/>
+					<path d="M0 417.89 L84.48 399.62 L192 408.75 L307.21 402.23 L433.93 425.71" class="st30"/>
+				</g>
+				<g id="shape1977" transform="translate(0.619553,-34.1023)">
+					
+					
+					<path d="M0 419.52 L80.7 406.14 L188.32 418.86 L303.61 425.71 L433.31 410.06 L0 419.52 Z" class="st15"/>
+					<path d="M0 419.52 L80.7 406.14 L188.32 418.86 L303.61 425.71 L433.31 410.06" class="st31"/>
+				</g>
+				<g id="shape1978" transform="translate(1.82409,-12.6204)">
+					
+					
+					<path d="M0 407.45 L77.86 373.53 L186.86 389.19 L303.64 425.71 L432.11 402.23 L0 407.45 Z" class="st15"/>
+					<path d="M0 407.45 L77.86 373.53 L186.86 389.19 L303.64 425.71 L432.11 402.23" class="st32"/>
+				</g>
+				<g id="shape1979" transform="translate(0,-19.4259)">
+					
+					
+					<path d="M0 425.71 L76.66 370.6 L191.64 378.75 L306.63 369.29 L435.38 382.34 L0 425.71 Z" class="st15"/>
+					<path d="M0 425.71 L76.66 370.6 L191.64 378.75 L306.63 369.29 L435.38 382.34" class="st33"/>
+				</g>
+				<g id="shape1980" transform="translate(0.619553,-21.0566)">
+					
+					
+					<path d="M0 424.73 L79.74 415.28 L189.27 425.71 L304.57 405.82 L433.31 420.49 L0 424.73 Z" class="st15"/>
+					<path d="M0 424.73 L79.74 415.28 L189.27 425.71 L304.57 405.82 L433.31 420.49" class="st34"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	
+
+<opr_dashboard_options>{"fit":"width"}</opr_dashboard_options>
+<opr_dashboard_categories><category>Alpha-Gamma</category></opr_dashboard_categories><opr_dashboard_options>{"fit":"width"}</opr_dashboard_options></svg>
